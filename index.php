@@ -15,7 +15,7 @@
 			<div id="card_content"  onmousedown="event.preventDefault ? event.preventDefault() : event.returnValue = false">
 				<div id="card_hover">Click me !</div>
 				<img id="card_front" src="./sp/sp_forward.jpg"/>
-				<canvas id="card_back"/>
+				<img id="card_back" src='idcard.jpg'/>
 			</div>
 
 		</div>
@@ -51,9 +51,9 @@ body{
 #content{
 	z-index: 0;
 	min-height:100%;
-	width:80vh;
+	width:100vh;
 	background-color: rgba(255,255,255,0.85);
-	border-radius:30px;
+	border-radius:10vh;
 }
 
 #card{
@@ -160,7 +160,6 @@ body{
     
 }
 
-
 	window.onload = function()
 	{
 	    //---------------------------------------------------------
@@ -228,13 +227,7 @@ body{
 
 	//SP AVATAR
 	//http://www.sp-studio.de/
-
-	var card_canvas = $("#card_back");
-	var card_context = card_canvas.get(0).getContext("2d");
-	card_context.moveTo(0,0);
-	card_context.fillStyle="lightgrey";
-	card_context.fillRect(0,0,card_canvas.width(),card_canvas.height());
-
+	
 	//FLIP 
 	//FROM https://davidwalsh.name/css-flip
 	var card_face = "front";
