@@ -19,7 +19,14 @@
 			</div>
 
 		</div>
+
+		<div id="about">
+			<p id="about1" class="about"><p>
+	 		<p id="about2" class="about"><p>
+		</div>
+
 	</div>
+	
 
 </body>
 
@@ -36,11 +43,14 @@ body{
 	display:flex;
 	flex-direction:column;
 	align-items:center;
+	padding:0;
+	margin:0;
+	font-size:3vh;
 }
 
 #bg{
 	background-color: black;
-	position:fixed;
+	position:fixed;z
 	height:100%;
 	width:100%;
 	top:0;
@@ -50,10 +60,12 @@ body{
 
 #content{
 	z-index: 0;
-	min-height:100%;
+	height:100vh;
 	width:100vh;
-	background-color: rgba(255,255,255,0.85);
-	border-radius:10vh;
+	margin:0;
+	background-color: black;
+	display:flex;
+
 }
 
 #card{
@@ -63,6 +75,7 @@ body{
 	flex-direction:column;
 	align-items:center;
 	position:relative;
+
 }
 @font-face {
     font-family: typoRound;
@@ -101,11 +114,33 @@ body{
 	z-index:1;
 }
 
+#about{
+	margin-top:3vh;
+	margin-left:2vh;
+	background-color:rba(0,0,0,0);
+	color:white;
+	width:50vh;
+	height:30vh;
+	max-width: 50vh;
+}
 
+.about{
+	color:white;
+	display:flex;
+}
 
+#about2{
+	display:flex;
+	flex-wrap: wrap;
+}
 
+.invisible{
+	visibility: hidden;
+}
 
-
+.biggerChar{
+	font-size:3.2vh;
+}
 
 
 </style>
@@ -181,8 +216,8 @@ body{
 	    }
 	    
 	    var shots = [];
-	    var colors = [[255,0,0],[255,255,0],[255,0,255],[0,255,255],[0,255,0],[0,0,255]];
-	    
+	    //var colors = [[255,0,0],[255,255,0],[255,0,255],[0,255,255],[0,255,0],[0,0,255]];
+	    var colors = [[255,255,255]];
 	    //posX, posY=0, dir="bottom", type=1, r=255, g=255, b=255, speed=1, dmg=1
 	    
 	    
@@ -223,7 +258,7 @@ body{
 	    },20);
 	}
 
-
+	var f_time = true;
 
 	//SP AVATAR
 	//http://www.sp-studio.de/
@@ -254,6 +289,10 @@ body{
 		card_hover_display = false;
 		$("#card_hover").css("visibility","hidden");
 		card_flip();
+		if (f_time){
+			f_time = false;
+			uncover();
+		}
 	});
 	
 
@@ -331,5 +370,83 @@ body{
     		$("#card_hover").css("visibility","hidden");
     	}
     });
+
+    // ----- Uncover -------------
+    function uncover(){
+    	uncover_a1();
+    }
+    about1_text = "     Hello, everybody !";
+    about2_text = "I am a 3rd year IT student, actually learning in Licence pro DIM at Annecy (France). It teaches JS tricks and mobile stuff, in order to form competents and agile web developpers. I like to test and experiment new things, but what  I enjoy the most is to put into practice my knowledge. Have a check on my apps list in the bottom of this page !";
+    var cpta = -1;
+    var cptc = 1;
+    function uncover_a1(){
+    	cpta = -1;
+    	about1_text = about1_text.replace(/ /g,"_");
+    	var arrValues = about1_text.split('');
+    	var fill_a1 = setInterval(function(){
+			cpta ++;
+			if (cpta < arrValues.length){
+	    		char = $("<div/>");
+	    		char.addClass("char")
+	    			.addClass("charnb"+cptc);
+	    		char.append(arrValues[cpta]);
+	    		if (arrValues[cpta] === "_"){
+	    			char.addClass("invisible");
+	    		}
+	    		$("#about1").append(char);
+	    		cptc++;
+			}else{
+				clearTimeout(fill_a1);
+				uncover_a2();
+			}
+    	},15);
+    }
+
+    function uncover_a2(){
+    	cpta = -1;
+    	about2_text = about2_text.replace(/ /g,"_");
+    	var arrValues = about2_text.split('');
+    	var fill_a2 = setInterval(function(){
+			cpta ++;
+			if (cpta < arrValues.length){
+	    		char = $("<div/>");
+	    		char.addClass("char")
+	    			.addClass("charnb"+cptc);
+	    		char.append(arrValues[cpta]);
+	    		if (arrValues[cpta] === "_"){
+	    			char.addClass("invisible");
+	    		}
+	    		$("#about2").append(char);
+	    		cptc++;
+			}else{
+				clearTimeout(fill_a2);
+
+				setTimeout(function(){aboutCharDeco();},500);
+				setTimeout(function(){aboutCharDeco2();},5000);
+			}
+    	},5);
+    } 
+
+    cptacd = 0;
+    function aboutCharDeco(){
+    	setInterval(function(){
+    		$(".charnb"+cptacd).removeClass("biggerChar");
+    		cptacd++;
+    		if (cptacd > $(".char").length)
+    			cptacd = 0;
+    		$(".charnb"+cptacd).addClass("biggerChar");
+    	},20);
+    }
+
+    cptacd2 = 0;
+    function aboutCharDeco2(){
+    	setInterval(function(){
+    		$(".charnb"+cptacd2).removeClass("biggerChar");
+    		cptacd2++;
+    		if (cptacd2 > $(".char").length)
+    			cptacd2 = 0;
+    		$(".charnb"+cptacd2).addClass("biggerChar");
+    	},40);
+    }
 
 </script>
