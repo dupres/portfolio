@@ -10,6 +10,7 @@
 <body>
 
 	<canvas id="bg"></canvas>
+	<img id="buttonpress" src="buttonpress.png"/>
 	<div id="content">
 		<div id="card">
 			<div id="card_content"  onmousedown="event.preventDefault ? event.preventDefault() : event.returnValue = false">
@@ -38,7 +39,22 @@
 	
 ?>
 <style>
-
+@font-face {
+    font-family: typoRound;
+    src: url(./fonts/Typo_Round.otf);
+}
+@font-face {
+    font-family: alphaMale;
+    src: url(./fonts/AlphaMaleModern.ttf);
+}
+@font-face {
+    font-family: prototype;
+    src: url(./fonts/Prototype.ttf);
+}
+@font-face {
+    font-family: microFLF;
+    src: url(./fonts/MicroFLF.ttf);
+}
 body{
 	display:flex;
 	flex-direction:column;
@@ -50,7 +66,7 @@ body{
 
 #bg{
 	background-color: black;
-	position:fixed;z
+	position:fixed;
 	height:100%;
 	width:100%;
 	top:0;
@@ -58,13 +74,22 @@ body{
 	z-index:-1000;
 }
 
+#buttonpress{
+	position:fixed;
+	top:25vh;
+	left:25vh;
+	width:50vh;
+	height:50vh;
+	z-index: 9000;
+}
+
 #content{
 	z-index: 0;
 	height:100vh;
 	width:100vh;
 	margin:0;
-	background-color: black;
-	display:flex;
+	background-color: rgba(0,0,0,0);
+	display:none;
 
 }
 
@@ -75,12 +100,9 @@ body{
 	flex-direction:column;
 	align-items:center;
 	position:relative;
+	opacity:0;
+}
 
-}
-@font-face {
-    font-family: typoRound;
-    src: url(Typo_Round.otf);
-}
 #card_hover{
 	font-family: typoRound;
 	z-index:42;
@@ -94,7 +116,7 @@ body{
 	width:100%;
 	height:100%;
 	transition: 0.5s ease-in-out all;
-	box-shadow: 5px 10px 10px #777;
+	box-shadow: 5px 10px 10px grey;
 	transform:rotate(-3deg);
 }
 #card_front{
@@ -115,13 +137,17 @@ body{
 }
 
 #about{
-	margin-top:3vh;
+	margin-top:1vh;
 	margin-left:2vh;
-	background-color:rba(0,0,0,0);
+	background-color:rgba(10,10,10,0.96);
+	border-radius:5vh;
+	border:1vh double white;
 	color:white;
 	width:50vh;
-	height:30vh;
-	max-width: 50vh;
+	height:60vh;
+	
+	transform:rotate(3deg);
+	opacity: 0;
 }
 
 .about{
@@ -129,9 +155,21 @@ body{
 	display:flex;
 }
 
+#about1{
+	font-family:prototype;
+	margin-bottom: 5vh;
+}
+
 #about2{
+	font-family:microFLF;
+	position:absolute;
+	top:8vh;
 	display:flex;
 	flex-wrap: wrap;
+}
+
+.word{
+	display:flex;
 }
 
 .invisible{
@@ -139,7 +177,7 @@ body{
 }
 
 .biggerChar{
-	font-size:3.2vh;
+	font-size:4vh;
 }
 
 
@@ -260,6 +298,18 @@ body{
 
 	var f_time = true;
 
+	//-------------   ButtonPress ---------------
+
+	$("#buttonpress").click(function(){
+		$("#buttonpress").css("display","none");
+		$("#content").css("display","flex");
+		$("#content").css("display","flex");
+		uncover();
+
+		setTimeout(function(){elementVisibilityLoading($("#card"),1);},500);
+		setTimeout(function(){elementVisibilityLoading($("#about"),2);},700);
+	});
+
 	//SP AVATAR
 	//http://www.sp-studio.de/
 	
@@ -291,7 +341,7 @@ body{
 		card_flip();
 		if (f_time){
 			f_time = false;
-			uncover();
+			
 		}
 	});
 	
@@ -372,18 +422,35 @@ body{
     });
 
     // ----- Uncover -------------
+    var cptVisibility=[];
+    cptVisibility["elem1"] = 0;
+    cptVisibility["elem2"] = 0;
+    function elementVisibilityLoading(element,idcpt){
+    	if (cptVisibility["elem"+idcpt] < 100){
+    		//cptVisibility["elem"+idcpt] += Math.floor((Math.random() * 10) + 1);
+    		cptVisibility["elem"+idcpt]++;
+    		if (cptVisibility["elem"+idcpt]>100)
+    			cptVisibility["elem"+idcpt] = 100;
+    		//nextStepDelay = Math.floor((Math.random() * 10) + 1)*20;
+    		nextStepDelay = 1;
+    		element.css("opacity",cptVisibility["elem"+idcpt]/100);
+    		setTimeout(function(){elementVisibilityLoading(element,idcpt)},nextStepDelay);
+    	}
+    }
+
     function uncover(){
-    	uncover_a1();
+    	setTimeout(function(){fill_about1();},1500);
     }
     about1_text = "     Hello, everybody !";
-    about2_text = "I am a 3rd year IT student, actually learning in Licence pro DIM at Annecy (France). It teaches JS tricks and mobile stuff, in order to form competents and agile web developpers. I like to test and experiment new things, but what  I enjoy the most is to put into practice my knowledge. Have a check on my apps list in the bottom of this page !";
+    about2_text = "  I am a 3rd year IT student, actually learning in Licence pro DIM at Annecy (France). It teaches JS tricks and mobile stuff, in order to form competents and agile web developpers.                            I like to test and experiment new things, but what I enjoy the most is to put into practice my knowledge.                              Have a check on my apps list in the bottom of this page !";
     var cpta = -1;
     var cptc = 1;
-    function uncover_a1(){
+    var cptw = 1;
+    function fill_about1(){
     	cpta = -1;
     	about1_text = about1_text.replace(/ /g,"_");
     	var arrValues = about1_text.split('');
-    	var fill_a1 = setInterval(function(){
+    	var fill_about1 = setInterval(function(){
 			cpta ++;
 			if (cpta < arrValues.length){
 	    		char = $("<div/>");
@@ -396,50 +463,60 @@ body{
 	    		$("#about1").append(char);
 	    		cptc++;
 			}else{
-				clearTimeout(fill_a1);
-				uncover_a2();
+				clearTimeout(fill_about1);
+				fill_about2();
 			}
     	},15);
     }
 
-    function uncover_a2(){
+    function fill_about2(){
     	cpta = -1;
     	about2_text = about2_text.replace(/ /g,"_");
     	var arrValues = about2_text.split('');
-    	var fill_a2 = setInterval(function(){
+    	var fill_about2 = setInterval(function(){
 			cpta ++;
 			if (cpta < arrValues.length){
+				if (arrValues[cpta] === "_"){
+					word = $("<div/>");
+					word.addClass("wordnb"+cptw);
+					cptw++;
+				}
 	    		char = $("<div/>");
 	    		char.addClass("char")
-	    			.addClass("charnb"+cptc);
+	    			.addClass("char2nb"+cptc);
 	    		char.append(arrValues[cpta]);
 	    		if (arrValues[cpta] === "_"){
 	    			char.addClass("invisible");
 	    		}
-	    		$("#about2").append(char);
+	    		word.append(char)
+	    			.addClass("word");
+	    		$("#about2").append(word);
 	    		cptc++;
 			}else{
-				clearTimeout(fill_a2);
+				clearTimeout(fill_about2);
 
-				setTimeout(function(){aboutCharDeco();},500);
-				setTimeout(function(){aboutCharDeco2();},5000);
+				setTimeout(function(){aboutTitleCursor();},2000);
+				setTimeout(function(){randomColorWord(0);},2500);
+				setTimeout(function(){randomColorWord2(0);},3000);
+				setTimeout(function(){randomColorWord3(0);},3500);
+				//setTimeout(function(){aboutTitleCursor2();},5000);
 			}
     	},5);
-    } 
+    }
 
     cptacd = 0;
-    function aboutCharDeco(){
+    function aboutTitleCursor(){
     	setInterval(function(){
     		$(".charnb"+cptacd).removeClass("biggerChar");
     		cptacd++;
     		if (cptacd > $(".char").length)
     			cptacd = 0;
     		$(".charnb"+cptacd).addClass("biggerChar");
-    	},20);
+    	},50);
     }
 
     cptacd2 = 0;
-    function aboutCharDeco2(){
+    function aboutTitleCursor2(){
     	setInterval(function(){
     		$(".charnb"+cptacd2).removeClass("biggerChar");
     		cptacd2++;
@@ -448,5 +525,51 @@ body{
     		$(".charnb"+cptacd2).addClass("biggerChar");
     	},40);
     }
+
+    function randomColorWord(previousWordNb){
+    	$(".wordnb"+previousWordNb).css("color","white");
+    	newWordNb = Math.floor((Math.random() * (cptw-1)) + 1);
+    	NextRCWDelay = Math.floor((Math.random() * 50) + 1)+ 50;
+    	$(".wordnb"+newWordNb).css("color","grey");
+    	setTimeout(function(){randomColorWord(newWordNb);},NextRCWDelay*10);
+    }
+
+    function randomColorWord2(previousWordNb2){
+    	$(".wordnb"+previousWordNb2).css("color","white");
+    	newWordNb2 = Math.floor((Math.random() * (cptw-1)) + 1);
+    	NextRCWDelay2 = Math.floor((Math.random() * 50) + 1)+ 50;
+    	$(".wordnb"+newWordNb2).css("color","grey");
+    	setTimeout(function(){randomColorWord2(newWordNb2);},NextRCWDelay2*10);
+    }
+
+    function randomColorWord3(previousWordNb3){
+    	$(".wordnb"+previousWordNb3).css("color","white");
+    	newWordNb3 = Math.floor((Math.random() * (cptw-1)) + 1);
+    	NextRCWDelay3 = Math.floor((Math.random() * 50) + 1)+ 50;
+    	$(".wordnb"+newWordNb3).css("color","grey");
+    	setTimeout(function(){randomColorWord3(newWordNb3);},NextRCWDelay3*10);
+    }
+
+    aboutMarginTop = "3vh";
+    var aboutWaveAnim = setInterval(function(){
+    	if (aboutMarginTop == "3vh")
+    		aboutMarginTop = "4vh";
+    	else
+    		aboutMarginTop = "3vh";
+    	$("#about").animate({
+    		marginTop:aboutMarginTop
+    	},500);
+    },500);
+
+    cardMarginTop = "2vh";
+    var cardWaveAnim = setInterval(function(){
+    	if (cardMarginTop == "2vh")
+    		cardMarginTop = "3vh";
+    	else
+    		cardMarginTop = "2vh";
+    	$("#card").animate({
+    		marginTop:cardMarginTop
+    	},550);
+    },550);
 
 </script>
