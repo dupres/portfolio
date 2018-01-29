@@ -10,20 +10,58 @@
 <body>
 
 	<canvas id="bg"></canvas>
-	<img id="buttonpress" src="buttonpress.png"/>
+
+	<div id="buttonpressdiv"><img id="buttonpress" src="buttonpress.png"/></div>
 	<div id="content">
-		<div id="card">
-			<div id="card_content"  onmousedown="event.preventDefault ? event.preventDefault() : event.returnValue = false">
-				<div id="card_hover">Click me !</div>
-				<img id="card_front" src="./sp/sp_forward.jpg"/>
-				<img id="card_back" src='idcard.jpg'/>
+		<div id="page1">
+			<div id="card">
+				<div id="card_face"></div>
+				<div id="card_content"  onmousedown="event.preventDefault ? event.preventDefault() : event.returnValue = false">
+					<div id="card_hover">Click me !</div>
+					<img id="card_front" src="./sp/sp_forward.jpg"/>
+					<img id="card_back" src='idcard.jpg'/>
+				</div>
+
 			</div>
 
+			<div id="about">
+				<p id="about1" class="about"><p>
+		 		<p id="about2" class="about"><p>
+			</div>
 		</div>
 
-		<div id="about">
-			<p id="about1" class="about"><p>
-	 		<p id="about2" class="about"><p>
+		<div id="page2">
+			<table id="techSkills">
+				<tr><th id="techSkillsTitle" colspan="3">Technical skills</th></tr>
+
+				<tr class='web' ><td class="techSkillSubtitle" coslpan="3">Web languages</td></tr>
+				<tr class='web'><td class="skillname">PHP</td><td class="skilllvl">8</td><td class="skilldef">Data</td></tr>
+				<tr class='web'><td class="skillname">HTML / CSS</td><td class="skilllvl">6</td><td class="skilldef">Design</td></tr>
+				<tr class='web'><td class="skillname">Javascript</td><td class="skilllvl">7</td><td class="skilldef">Animations</td></tr>
+
+				<tr class='sql'><td class="techSkillSubtitle" coslpan="3">SQL languages</td></tr>
+				<tr class='sql'><td class="skillname">MySQL</td><td class="skilllvl">6</td><td class="skilldef">Data transmission</td></tr>
+				<tr class='sql'><td class="skillname">PostegreSQL</td><td class="skilllvl">5</td><td class="skilldef"></td></tr>
+				<tr class='sql'><td class="skillname">NoSQL</td><td class="skilllvl">4</td><td class="skilldef"></td></tr>
+
+				<tr class='hard'><td class="techSkillSubtitle" coslpan="3">Hardcode languages</td></tr>
+				<tr class='hard'><td class="skillname">C / C++</td><td class="skilllvl">3</td><td class="skilldef">Basic programming</td></tr>
+				<tr class='hard'><td class="skillname">C#</td><td class="skilllvl">5</td><td class="skilldef">Object oriented programming</td></tr>
+				<tr class='hard'><td class="skillname">Java</td><td class="skilllvl">4</td><td class="skilldef">Java</td></tr>
+				<tr class='hard'><td class="skillname">Python</td><td class="skilllvl">3</td><td class="skilldef">Data processing</td></tr>
+				<tr class='hard'><td class="skillname">VBA</td><td class="skilllvl">6</td><td class="skilldef">Excel spreadsheets</td></tr>
+
+				<tr class='model'><td class="techSkillSubtitle" coslpan="3">Models and methods</td></tr>
+				<tr class='model'><td class="skillname">UML</td><td class="skilllvl">5</td><td class="skilldef">Basic programming</td></tr>
+				<tr class='model'><td class="skillname">MERISE</td><td class="skilllvl">5</td><td class="skilldef">Object oriented programming</td></tr>
+
+				<tr class='oper'><td class="techSkillSubtitle" coslpan="3">Operating systems</td></tr>
+				<tr class='oper'><td class="skillname">Windows</td><td class="skilllvl">9</td><td class="skilldef"></td></tr>
+				<tr class='oper'><td class="skillname">Linux</td><td class="skilllvl">3</td><td class="skilldef"></td></tr>
+
+			</table>
+		</div>
+
 		</div>
 
 	</div>
@@ -55,6 +93,34 @@
     font-family: microFLF;
     src: url(./fonts/MicroFLF.ttf);
 }
+@font-face{
+	font-family: diagon;
+	src: url(./fonts/Diagon.otf);
+}
+@font-face{
+	font-family: pixel;
+	src: url(./fonts/Pixel.otf);
+}
+@font-face{
+	font-family:bubbleboddy;
+	src: url(./fonts/Bubbleboddy.ttf);
+}
+@font-face{
+	font-family:Chocolate;
+	src:url(./fonts/ChocolateBar.otf);
+}
+@font-face{
+	font-family:komtit;
+	src:url(./fonts/KOMTIT.ttf);
+}
+@font-face{
+	font-family:MomTW;
+	src:url(./fonts/MomTW.ttf);
+}
+@font-face{
+	font-family:ASwirlVelvet;
+	src:url(./fonts/ASwirlVelvet.ttf);
+}
 body{
 	display:flex;
 	flex-direction:column;
@@ -74,24 +140,46 @@ body{
 	z-index:-1000;
 }
 
-#buttonpress{
+#content{
+	z-index:0;
+	height:1000vh;
+	width:100vh;
+	margin:0;
+	background-color: rgba(0,0,0,0);
+	display:none;
+	flex-direction:column;
+
+}
+#page1{
+	display:flex;
+	flex-direction:row;
+	margin-top:10vh;
+	height:80vh;
+}
+
+#page2{
+
+	margin-top:100vh;
+}
+
+#buttonpressdiv{
 	position:fixed;
-	top:25vh;
-	left:25vh;
+	top:10vh;
+	left:10vh;
 	width:50vh;
 	height:50vh;
 	z-index: 9000;
 }
 
-#content{
-	z-index: 0;
-	height:100vh;
-	width:100vh;
-	margin:0;
-	background-color: rgba(0,0,0,0);
-	display:none;
-
+#buttonpress{
+	position:relative;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	z-index: 9001;
 }
+
 
 #card{
 	width:40vh;
@@ -101,6 +189,17 @@ body{
 	align-items:center;
 	position:relative;
 	opacity:0;
+}
+
+#card_face{
+	background-color: rgba(255,255,0,0);
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	z-index:10;
+	transform:rotate(-3deg);
 }
 
 #card_hover{
@@ -180,8 +279,83 @@ body{
 	font-size:4vh;
 }
 
+.selectedWord{
+	color:green;
+	font-weight: bolder;
+}
 
+.char:hover{
+	color:red;
+}
+
+#techSkills{
+	/*background-color:white;*/
+	color:white;
+	font-size:2vh;
+	margin-left:00vh;
+	left:0vh;
+	/*width:50vh;*/
+	transform:rotate(-1deg);
+	width:100vh;
+}
+
+#techSkillsTitle{
+	font-family:pixel;
+}
+
+.web{
+	font-family: ASwirlVelvet;
+	font-size:25px;
+}
+.sql{
+	font-family:bubbleboddy;
+}
+.hard{
+	font-family:MomTW;
+}
+.oper{
+	font-family:komtit;
+}
+.model{
+	font-family:Chocolate;
+}
+
+.techSkillSubtitle{
+	/*text-decoration: underline;*/
+	width:25vh;
+	border-top:3px dotted white;
+	font-weight:bolder;
+	font-size:20px;
+}
+
+.skillname{
+	/*font-size:2vh;*/
+}
+
+.skilllvl{
+	/*width:50vh;*/
+	height:3vh;
+}
+
+.skilldef{
+
+}
+
+td{
+	border:1px solid black;
+}
+
+th{
+	font-size:3.5vh;
+}
 </style>
+
+<!--
+<tr><td class="techSkillSubtitle" coslpan="3">Hardcode languages</td></tr>
+				<tr><td class="skillname">C / C++</td><td class="skilllvl">3</td><td class="skilldef">Basic 
+				programming</td></tr>
+-->
+
 <script>
 
 	class Shot{
@@ -301,13 +475,15 @@ body{
 	//-------------   ButtonPress ---------------
 
 	$("#buttonpress").click(function(){
-		$("#buttonpress").css("display","none");
+		$("#buttonpress").remove();
+		$("#buttonpressdiv").remove();
 		$("#content").css("display","flex");
 		$("#content").css("display","flex");
 		uncover();
 
 		setTimeout(function(){elementVisibilityLoading($("#card"),1);},500);
 		setTimeout(function(){elementVisibilityLoading($("#about"),2);},700);
+		moveitCond = false;
 	});
 
 	//SP AVATAR
@@ -406,7 +582,7 @@ body{
 			$("#card_hover").animate({fontSize: "3vh"});
 		}
 	},400);
-    $("#card").on("mouseover",function(){
+    $("#card_face").on("mouseover",function(){
     	if (!(card_hover_firsttime)){
 	    	if (card_hover_display){
 		    	if (card_face == "front"){
@@ -415,13 +591,25 @@ body{
 		    }
 		}
     });
-    $("#card").on("mouseout",function(){
+    $("#card_face").on("mouseout",function(){
     	if (!(card_hover_firsttime)){
     		$("#card_hover").css("visibility","hidden");
     	}
     });
 
-    // ----- Uncover -------------
+
+    // ------ Technical skills ------
+
+    $.each($(".skilllvl"),function(key,value){
+    	var skillCanvas = $("<canvas/>");
+
+    });
+
+
+
+    // -------------------------
+    //			Uncover
+    // -------------------------
     var cptVisibility=[];
     cptVisibility["elem1"] = 0;
     cptVisibility["elem2"] = 0;
@@ -495,14 +683,18 @@ body{
 			}else{
 				clearTimeout(fill_about2);
 
-				setTimeout(function(){aboutTitleCursor();},2000);
-				setTimeout(function(){randomColorWord(0);},2500);
-				setTimeout(function(){randomColorWord2(0);},3000);
-				setTimeout(function(){randomColorWord3(0);},3500);
+				setTimeout(function(){aboutTitleCursor();},500);
+				setTimeout(function(){randomColorWord(0);},1000);
+				setTimeout(function(){randomColorWord2(0);},1500);
+				setTimeout(function(){randomColorWord3(0);},2000);
 				//setTimeout(function(){aboutTitleCursor2();},5000);
 			}
     	},5);
     }
+
+    // -----------------------------------
+    //			Effects
+    // ----------------------------------
 
     cptacd = 0;
     function aboutTitleCursor(){
@@ -515,39 +707,28 @@ body{
     	},50);
     }
 
-    cptacd2 = 0;
-    function aboutTitleCursor2(){
-    	setInterval(function(){
-    		$(".charnb"+cptacd2).removeClass("biggerChar");
-    		cptacd2++;
-    		if (cptacd2 > $(".char").length)
-    			cptacd2 = 0;
-    		$(".charnb"+cptacd2).addClass("biggerChar");
-    	},40);
-    }
-
     function randomColorWord(previousWordNb){
-    	$(".wordnb"+previousWordNb).css("color","white");
+    	$(".wordnb"+previousWordNb).removeClass("selectedWord");
     	newWordNb = Math.floor((Math.random() * (cptw-1)) + 1);
     	NextRCWDelay = Math.floor((Math.random() * 50) + 1)+ 50;
-    	$(".wordnb"+newWordNb).css("color","grey");
-    	setTimeout(function(){randomColorWord(newWordNb);},NextRCWDelay*10);
+    	$(".wordnb"+newWordNb).addClass("selectedWord");
+    	setTimeout(function(){randomColorWord(newWordNb);},NextRCWDelay*5);
     }
 
     function randomColorWord2(previousWordNb2){
-    	$(".wordnb"+previousWordNb2).css("color","white");
+    	$(".wordnb"+previousWordNb2).removeClass("selectedWord");
     	newWordNb2 = Math.floor((Math.random() * (cptw-1)) + 1);
     	NextRCWDelay2 = Math.floor((Math.random() * 50) + 1)+ 50;
-    	$(".wordnb"+newWordNb2).css("color","grey");
-    	setTimeout(function(){randomColorWord2(newWordNb2);},NextRCWDelay2*10);
+    	$(".wordnb"+newWordNb2).addClass("selectedWord");
+    	setTimeout(function(){randomColorWord2(newWordNb2);},NextRCWDelay2*5);
     }
 
     function randomColorWord3(previousWordNb3){
-    	$(".wordnb"+previousWordNb3).css("color","white");
+    	$(".wordnb"+previousWordNb3).removeClass("selectedWord");
     	newWordNb3 = Math.floor((Math.random() * (cptw-1)) + 1);
     	NextRCWDelay3 = Math.floor((Math.random() * 50) + 1)+ 50;
-    	$(".wordnb"+newWordNb3).css("color","grey");
-    	setTimeout(function(){randomColorWord3(newWordNb3);},NextRCWDelay3*10);
+    	$(".wordnb"+newWordNb3).addClass("selectedWord");
+    	setTimeout(function(){randomColorWord3(newWordNb3);},NextRCWDelay3*5);
     }
 
     aboutMarginTop = "3vh";
@@ -559,7 +740,7 @@ body{
     	$("#about").animate({
     		marginTop:aboutMarginTop
     	},500);
-    },500);
+    },499);
 
     cardMarginTop = "2vh";
     var cardWaveAnim = setInterval(function(){
@@ -570,6 +751,244 @@ body{
     	$("#card").animate({
     		marginTop:cardMarginTop
     	},550);
-    },550);
+    },549);
+
+    var t = 0;
+    var moveitCond = true;
+	function moveit() {
+	    t += 0.05;
+	    var r = 50;         // radius
+	    var xcenter = 100;   // center X position
+	    var ycenter = 100;   // center Y position
+	    var newLeft = Math.floor(xcenter + (r * Math.cos(t)));
+	    var newTop = Math.floor(ycenter + (r * Math.sin(t)));
+	    $('#buttonpress').animate({
+	        top: newTop,
+	        left: newLeft,
+	    }, 1, function() {
+	    	if (moveitCond)
+		        moveit();
+	    });
+	}
+	moveit();
+
+	//----- Technical skills -------------------------
+	var cptGauge = 0;
+	var gaugeWide = [];
+	$.each($(".skilllvl"),function(){
+		lvl = $(this).text();
+		gauge = $("<div/>");
+		gauge.addClass("gauge"+cptGauge)
+			.css({
+			"background-color":"white",
+			"height":"100%",
+			"width":(lvl*5)+"vh",
+			"border-radius":"0px 5px 5px 0px"
+		})
+			.text(true);
+		
+		$(this).text("").append(gauge);
+		gaugeWide[cptGauge] = false;
+		cptGauge++;
+		
+	});
+	
+	var gaugeMore = 0.1;
+
+	var gaugeDelay0 = Math.floor((Math.random() * 1000) + 200);
+	setInterval(function(){
+		var gaugeSize0 = 8;
+		if ($(".gauge0").text()=="true"){
+			$(".gauge0").text("false");
+			gaugeSize0+=gaugeMore;
+		}else{
+			$(".gauge0").text("true");
+			gaugeSize0-=gaugeMore;
+		}
+			$(".gauge0").animate({width:gaugeSize0*5+"vh"},gaugeDelay0);
+	},gaugeDelay0);
+
+	var gaugeDelay1 = Math.floor((Math.random() * 1000) + 200);
+	setInterval(function(){
+		var gaugeSize1 = 6;
+		if ($(".gauge1").text()=="true"){
+			$(".gauge1").text("false");
+			gaugeSize1+=gaugeMore;
+		}else{
+			$(".gauge1").text("true");
+			gaugeSize1-=gaugeMore;
+		}
+			$(".gauge1").animate({width:gaugeSize1*5+"vh"},gaugeDelay1);
+	},gaugeDelay1);
+
+	var gaugeDelay2 = Math.floor((Math.random() * 1000) + 200);
+	setInterval(function(){
+		var gaugeSize2 = 7;
+		if ($(".gauge2").text()=="true"){
+			$(".gauge2").text("false");
+			gaugeSize2+=gaugeMore;
+		}else{
+			$(".gauge2").text("true");
+			gaugeSize2-=gaugeMore;
+		}
+			$(".gauge2").animate({width:gaugeSize2*5+"vh"},gaugeDelay2);
+	},gaugeDelay2);
+
+	var gaugeDelay3 = Math.floor((Math.random() * 1000) + 200);
+	setInterval(function(){
+		var gaugeSize3 = 6;
+		if ($(".gauge3").text()=="true"){
+			$(".gauge3").text("false");
+			gaugeSize3+=gaugeMore;
+		}else{
+			$(".gauge3").text("true");
+			gaugeSize3-=gaugeMore;
+		}
+			$(".gauge3").animate({width:gaugeSize3*5+"vh"},gaugeDelay3);
+	},gaugeDelay3);
+
+	var gaugeDelay4 = Math.floor((Math.random() * 1000) + 200);
+	setInterval(function(){
+		var gaugeSize4 = 5;
+		if ($(".gauge4").text()=="true"){
+			$(".gauge4").text("false");
+			gaugeSize4+=gaugeMore;
+		}else{
+			$(".gauge4").text("true");
+			gaugeSize4-=gaugeMore;
+		}
+			$(".gauge4").animate({width:gaugeSize4*5+"vh"},gaugeDelay4);
+	},gaugeDelay4);
+
+	var gaugeDelay5 = Math.floor((Math.random() * 1000) + 200);
+	setInterval(function(){
+		var gaugeSize5 = 4;
+		if ($(".gauge5").text()=="true"){
+			$(".gauge5").text("false");
+			gaugeSize5+=gaugeMore;
+		}else{
+			$(".gauge5").text("true");
+			gaugeSize5-=gaugeMore;
+		}
+			$(".gauge5").animate({width:gaugeSize5*5+"vh"},gaugeDelay5);
+	},gaugeDelay5);
+
+	var gaugeDelay6 = Math.floor((Math.random() * 1000) + 200);
+	setInterval(function(){
+		var gaugeSize6 = 3;
+		if ($(".gauge6").text()=="true"){
+			$(".gauge6").text("false");
+			gaugeSize6+=gaugeMore;
+		}else{
+			$(".gauge6").text("true");
+			gaugeSize6-=gaugeMore;
+		}
+			$(".gauge6").animate({width:gaugeSize6*5+"vh"},gaugeDelay6);
+	},gaugeDelay6);
+
+	var gaugeDelay7 = Math.floor((Math.random() * 1000) + 200);
+	setInterval(function(){
+		var gaugeSize7 = 5;
+		if ($(".gauge7").text()=="true"){
+			$(".gauge7").text("false");
+			gaugeSize7+=gaugeMore;
+		}else{
+			$(".gauge7").text("true");
+			gaugeSize7-=gaugeMore;
+		}
+			$(".gauge7").animate({width:gaugeSize7*5+"vh"},gaugeDelay7);
+	},gaugeDelay7);
+
+	var gaugeDelay8 = Math.floor((Math.random() * 1000) + 200);
+	setInterval(function(){
+		var gaugeSize8 = 4;
+		if ($(".gauge8").text()=="true"){
+			$(".gauge8").text("false");
+			gaugeSize8+=gaugeMore;
+		}else{
+			$(".gauge8").text("true");
+			gaugeSize8-=gaugeMore;
+		}
+			$(".gauge8").animate({width:gaugeSize8*5+"vh"},gaugeDelay8);
+	},gaugeDelay8);
+
+	var gaugeDelay9 = Math.floor((Math.random() * 1000) + 200);
+	setInterval(function(){
+		var gaugeSize9 = 3;
+		if ($(".gauge9").text()=="true"){
+			$(".gauge9").text("false");
+			gaugeSize9+=gaugeMore;
+		}else{
+			$(".gauge9").text("true");
+			gaugeSize9-=gaugeMore;
+		}
+			$(".gauge9").animate({width:gaugeSize9*5+"vh"},gaugeDelay9);
+	},gaugeDelay9);
+
+	var gaugeDelay10 = Math.floor((Math.random() * 1000) + 200);
+	setInterval(function(){
+		var gaugeSize10 = 6;
+		if ($(".gauge10").text()=="true"){
+			$(".gauge10").text("false");
+			gaugeSize10+=gaugeMore;
+		}else{
+			$(".gauge10").text("true");
+			gaugeSize10-=gaugeMore;
+		}
+			$(".gauge10").animate({width:gaugeSize10*5+"vh"},gaugeDelay10);
+	},gaugeDelay10);
+
+	var gaugeDelay11 = Math.floor((Math.random() * 1000) + 200);
+	setInterval(function(){
+		var gaugeSize11 = 5;
+		if ($(".gauge11").text()=="true"){
+			$(".gauge11").text("false");
+			gaugeSize11+=gaugeMore;
+		}else{
+			$(".gauge11").text("true");
+			gaugeSize11-=gaugeMore;
+		}
+			$(".gauge11").animate({width:gaugeSize11*5+"vh"},gaugeDelay11);
+	},gaugeDelay11);
+
+	var gaugeDelay12 = Math.floor((Math.random() * 1000) + 200);
+	setInterval(function(){
+		var gaugeSize12 = 5;
+		if ($(".gauge12").text()=="true"){
+			$(".gauge12").text("false");
+			gaugeSize12+=gaugeMore;
+		}else{
+			$(".gauge12").text("true");
+			gaugeSize12-=gaugeMore;
+		}
+			$(".gauge12").animate({width:gaugeSize12*5+"vh"},gaugeDelay12);
+	},gaugeDelay12);
+
+	var gaugeDelay13 = Math.floor((Math.random() * 1000) + 200);
+	setInterval(function(){
+		var gaugeSize13 = 9;
+		if ($(".gauge13").text()=="true"){
+			$(".gauge13").text("false");
+			gaugeSize13+=gaugeMore;
+		}else{
+			$(".gauge13").text("true");
+			gaugeSize13-=gaugeMore;
+		}
+			$(".gauge13").animate({width:gaugeSize13*5+"vh"},gaugeDelay13);
+	},gaugeDelay13);
+	
+	var gaugeDelay14 = Math.floor((Math.random() * 1000) + 200);
+	setInterval(function(){
+		var gaugeSize14 = 3;
+		if ($(".gauge14").text()=="true"){
+			$(".gauge14").text("false");
+			gaugeSize14+=gaugeMore;
+		}else{
+			$(".gauge14").text("true");
+			gaugeSize14-=gaugeMore;
+		}
+			$(".gauge14").animate({width:gaugeSize14*5+"vh"},gaugeDelay14);
+	},gaugeDelay14);
+	
 
 </script>
