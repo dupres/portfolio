@@ -11,61 +11,91 @@
 
 	<canvas id="bg"></canvas>
 
-	<div id="buttonpressdiv"><img id="buttonpress" src="buttonpress.png"/></div>
+	<div id="buttonpressdiv"><img id="buttonpress" src="buttonpress.png"/></div>	
 	<div id="content">
-		<div id="page1">
-			<div id="card">
-				<div id="card_face"></div>
-				<div id="card_content"  onmousedown="event.preventDefault ? event.preventDefault() : event.returnValue = false">
-					<div id="card_hover">Click me !</div>
-					<img id="card_front" src="./sp/sp_forward.jpg"/>
-					<img id="card_back" src='idcard.jpg'/>
+		<div id="summary">
+			<button class='summaryButton' onclick="reach('page1');">Me</button>
+			<button class='summaryButton' onclick="reach('page2');">My skills</button>
+			<button class='summaryButton' onclick="reach('page3');">Experiences</button>
+			<button class='summaryButton' onclick="reach('page4');">Projects</button>
+			<a href='Stephen_DUPRE_CV_3.0_eng.pdf'><button class='CVButton'>CV</button></a>
+
+
+
+		</div>
+		<div id="pages">
+			<div id="page1" class="page">
+				<div id="card">
+					<div id="card_face"></div>
+					<div id="card_content"  onmousedown="event.preventDefault ? event.preventDefault() : event.returnValue = false">
+						<div id="card_hover">Click me !</div>
+						<img id="card_front" src="./sp/sp_forward.jpg"/>
+						<img id="card_back" src='idcard.jpg'/>
+					</div>
+
 				</div>
 
+				<div id="about">
+					<p id="about1" class="about"><p>
+			 		<p id="about2" class="about"><p>
+				</div>
 			</div>
 
-			<div id="about">
-				<p id="about1" class="about"><p>
-		 		<p id="about2" class="about"><p>
+			<div id="page2" class="page">
+				<table id="techSkills">
+					<tr><th id="techSkillsTitle" colspan="2">Technical skills</th></tr>
+
+					<tr class='web' ><td class="techSkillSubtitle" coslpan="3">Web languages</td></tr>
+					<tr class='web'><td class="skillname">PHP</td><td class="skilllvl weblvl">8</td><td class="skilldef">Data</td></tr>
+					<tr class='web'><td class="skillname">HTML / CSS</td><td class="skilllvl weblvl">6</td><td class="skilldef">Design</td></tr>
+					<tr class='web'><td class="skillname">Javascript</td><td class="skilllvl weblvl">7</td><td class="skilldef">Animations</td></tr>
+
+					<tr class='sql'><td class="techSkillSubtitle" coslpan="3">SQL languages</td></tr>
+					<tr class='sql'><td class="skillname">MySQL</td><td class="skilllvl sqllvl">6</td><td class="skilldef">Data transmission</td></tr>
+					<tr class='sql'><td class="skillname">PostegreSQL</td><td class="skilllvl sqllvl">5</td><td class="skilldef"></td></tr>
+					<tr class='sql'><td class="skillname">NoSQL</td><td class="skilllvl sqllvl">4</td><td class="skilldef"></td></tr>
+
+					<tr class='hard'><td class="techSkillSubtitle" coslpan="3">Hardcode languages</td></tr>
+					<tr class='hard'><td class="skillname">C / C++</td><td class="skilllvl hardlvl">3</td><td class="skilldef">Basic programming</td></tr>
+					<tr class='hard'><td class="skillname">C#</td><td class="skilllvl hardlvl">5</td><td class="skilldef">Object oriented programming</td></tr>
+					<tr class='hard'><td class="skillname">Java</td><td class="skilllvl hardlvl">4</td><td class="skilldef">Java</td></tr>
+					<tr class='hard'><td class="skillname">Python</td><td class="skilllvl hardlvl">3</td><td class="skilldef">Data processing</td></tr>
+					<tr class='hard'><td class="skillname">VBA</td><td class="skilllvl hardlvl">6</td><td class="skilldef">Excel spreadsheets</td></tr>
+
+					<tr class='model'><td class="techSkillSubtitle" coslpan="3">Models and methods</td></tr>
+					<tr class='model'><td class="skillname">UML</td><td class="skilllvl modellvl">5</td><td class="skilldef">Basic programming</td></tr>
+					<tr class='model'><td class="skillname">MERISE</td><td class="skilllvl modellvl">5</td><td class="skilldef">Object oriented programming</td></tr>
+
+					<tr class='oper'><td class="techSkillSubtitle" coslpan="3">Operating systems</td></tr>
+					<tr class='oper'><td class="skillname">Windows</td><td class="skilllvl operlvl">9</td><td class="skilldef"></td></tr>
+					<tr class='oper'><td class="skillname">Linux</td><td class="skilllvl operlvl">3</td><td class="skilldef"></td></tr>
+					<tr class='finalRow'><td>This is the final row down !</td><td class="finalGauge">Hidden gauge</td><td/></tr>
+
+				</table>
+			</div>
+
+			<div id="page3" class="page">
+				<div class="expTitle">Qualifications</div>
+				<table id="qualifications">
+					<tr><td>Soon</td><td><strong>LP DIM (Professional Bachelor’s Degree in multi-plateform software development) - Sandwich course</strong><br/>CCI Annecy / University of Savoy / IUT Annecy—Annecy-le-Vieux, France</td></tr>
+					<tr><td>June, 2017</td><td><strong>DUT Informatique (2-year university diploma in computer science)</strong><br/>University of Savoy / IUT Annecy—Annecy-le-Vieux, France</td></tr>
+					<tr id="explastrow"><td>June, 2015</td><td><strong>French Baccalaureate (High School diploma) with honors</strong><br/>Hector Berlioz High School—La Côte St André, France</td></tr>
+				</table>
+				<div class="expTitle">Works</div>
+				<table id="works">
+					<tr><td>September 2017 to June 2018<br/>(1 school year, 10 months)</td><td><strong><i>Sandwich course :</i> PHP development on an ERP trade software package.</strong><br/><a href="www.isisolutions.fr">IsiSolutions</a>—Cran-Gevrier, France</td></tr>
+					<tr><td>April to June 2017<br/>(3 months)</td><td><strong><i>IT internship :</i> Design and development of VBA tools for the operational mar-keting department.</strong><br/><a href="www.somfy.com">SOMFY SAS</a>,<a href="http://www.patriarche.fr/projet/somfy-centre-rd"> R&amp;D Center</a>—Cluses, France</td></tr>
+					<tr><td>July to August 2014, 2015, 2016<br/>(2 months each year during 3 years)</td><td><strong><i>Heating engineering labour :</i> Building, destruction, maintenance of factory fur-naces and other manual tasks.</strong><br/><a href="http://www.e-pro.fr/isere/fabrication-de-fours-et-bruleurs/tdma_f813494">TDMA</a>—Apprieu, France<br/><a href="http://www.ferbecketfumitherm.com/">Fumitherm</a>—Les Eparres, France</td></tr>
+					<tr><td>June 2013<br/>(1 month)</td><td><strong><i>Computer repairer aid :</i> Computer installation (hardware), software update, peripheral sales and advice.</strong><br/><a title="TDMA does not have a website anymore" href="http://www.e-pro.fr/isere/fabrication-de-fours-et-bruleurs/tdma_f813494">TDMA Informatique</a>—Apprieu, France</td></tr>
+					<tr><td>March 2012<br/>(2 weeks)</td><td><strong><i>Dog breeder aid :</i> Care, breeding, contests. Website update.</strong><br/><a title="Patrick LARGUET is not dog breeder anymore"><a href="https://www.societe.com/societe/sci-daisy-533518999.html">Patrick LARGUET</a>, dog breeder</a>—Champier, France</td></tr>
+				</table>
+			</div>
+
+			<div id="page4" class="page">
+				
 			</div>
 		</div>
-
-		<div id="page2">
-			<table id="techSkills">
-				<tr><th id="techSkillsTitle" colspan="3">Technical skills</th></tr>
-
-				<tr class='web' ><td class="techSkillSubtitle" coslpan="3">Web languages</td></tr>
-				<tr class='web'><td class="skillname">PHP</td><td class="skilllvl">8</td><td class="skilldef">Data</td></tr>
-				<tr class='web'><td class="skillname">HTML / CSS</td><td class="skilllvl">6</td><td class="skilldef">Design</td></tr>
-				<tr class='web'><td class="skillname">Javascript</td><td class="skilllvl">7</td><td class="skilldef">Animations</td></tr>
-
-				<tr class='sql'><td class="techSkillSubtitle" coslpan="3">SQL languages</td></tr>
-				<tr class='sql'><td class="skillname">MySQL</td><td class="skilllvl">6</td><td class="skilldef">Data transmission</td></tr>
-				<tr class='sql'><td class="skillname">PostegreSQL</td><td class="skilllvl">5</td><td class="skilldef"></td></tr>
-				<tr class='sql'><td class="skillname">NoSQL</td><td class="skilllvl">4</td><td class="skilldef"></td></tr>
-
-				<tr class='hard'><td class="techSkillSubtitle" coslpan="3">Hardcode languages</td></tr>
-				<tr class='hard'><td class="skillname">C / C++</td><td class="skilllvl">3</td><td class="skilldef">Basic programming</td></tr>
-				<tr class='hard'><td class="skillname">C#</td><td class="skilllvl">5</td><td class="skilldef">Object oriented programming</td></tr>
-				<tr class='hard'><td class="skillname">Java</td><td class="skilllvl">4</td><td class="skilldef">Java</td></tr>
-				<tr class='hard'><td class="skillname">Python</td><td class="skilllvl">3</td><td class="skilldef">Data processing</td></tr>
-				<tr class='hard'><td class="skillname">VBA</td><td class="skilllvl">6</td><td class="skilldef">Excel spreadsheets</td></tr>
-
-				<tr class='model'><td class="techSkillSubtitle" coslpan="3">Models and methods</td></tr>
-				<tr class='model'><td class="skillname">UML</td><td class="skilllvl">5</td><td class="skilldef">Basic programming</td></tr>
-				<tr class='model'><td class="skillname">MERISE</td><td class="skilllvl">5</td><td class="skilldef">Object oriented programming</td></tr>
-
-				<tr class='oper'><td class="techSkillSubtitle" coslpan="3">Operating systems</td></tr>
-				<tr class='oper'><td class="skillname">Windows</td><td class="skilllvl">9</td><td class="skilldef"></td></tr>
-				<tr class='oper'><td class="skillname">Linux</td><td class="skilllvl">3</td><td class="skilldef"></td></tr>
-
-			</table>
-		</div>
-
-		</div>
-
 	</div>
-	
 
 </body>
 
@@ -121,15 +151,36 @@
 	font-family:ASwirlVelvet;
 	src:url(./fonts/ASwirlVelvet.ttf);
 }
+@font-face{
+	font-family:linowrite;
+	src:url(./fonts/linowrite.ttf);
+}
+@font-face{
+	font-family: TravelingTypewriter;
+	src:url(./fonts/TravelingTypewriter.ttf);
+}
+@font-face{
+	font-family:dkjambo;
+	src:url(./fonts/DKJambo.otf);
+}
+@font-face{
+	font-family:jbetude;
+	src:url(./fonts/JBEtude.ttf);
+}
 body{
 	display:flex;
-	flex-direction:column;
-	align-items:center;
+	flex-direction:row;
 	padding:0;
 	margin:0;
 	font-size:3vh;
-}
+	overflow-x: none;
+	overflow-y: none;
 
+}
+*{
+	outline:0;
+	overflow:none;
+}
 #bg{
 	background-color: black;
 	position:fixed;
@@ -139,29 +190,144 @@ body{
 	left:0;
 	z-index:-1000;
 }
-
 #content{
 	z-index:0;
-	height:1000vh;
-	width:100vh;
+	/*height:1000vh;*/
+	height:96vh;
+	width:160vh;
 	margin:0;
 	background-color: rgba(0,0,0,0);
 	display:none;
+	flex-direction:row;
+}
+#summary{
+	height:100%;
+	width:20%;
+	/*background-color:rgba(255,255,255,0.5);*/
+	display:none;
+	border-left:1vh double white;
+	border-right:1vh double white;
+	border-bottom:1vh double white;
+	border-radius:0,0,60,60;
+	display:flex;
 	flex-direction:column;
+	align-items:center;
+}
+.summaryButton {
+  -webkit-border-radius: 60;
+  -moz-border-radius: 60;
+  border-radius: 10vh;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 1vh 2vh;
+  /*border: solid #ffffff 1vh;*/
+  text-decoration: none;
+  margin-top:5vh;
+  background-color: rgba(0,0,0,0);
+  width:95%;
+}
 
+.summaryButton:hover {
+  background: rgba(255,255,255,0.5);
+  text-decoration: none;
+}
+.CVButton {
+  -webkit-border-radius: 60;
+  -moz-border-radius: 60;
+  border-radius: 10vh;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 1vh 2vh;
+  /*border: solid #ffffff 1vh;*/
+  text-decoration: none;
+  margin-top:10vh;
+  background-color: rgba(255,255,255,0.25);
+  width:20vh;
+}
+
+.CVButton:hover {
+  background: rgba(255,255,255,0.5);
+  text-decoration: none;
+}
+#pages{
+	height:100%;
+	width:80%;
 }
 #page1{
 	display:flex;
 	flex-direction:row;
 	margin-top:10vh;
 	height:80vh;
+	padding-left:7vh;
 }
 
 #page2{
-
-	margin-top:100vh;
+	display:none;
+	padding-left:10vh;
+	width:100%;
+	background-color:rgba(0,0,0,0.85);
+	font-weight:lighter;
 }
 
+#page3{
+	display:none;
+	padding-left:10vh;
+	width:100%;
+	background-color:rgba(0,0,0,0.85);
+	font-family:linowrite;
+}
+.expTitle{
+	border:1px dashed white;
+	font-weight:bolder;
+	color:white;
+	margin-top:1vh;
+}
+#qualifications{
+	/*padding-top:5vh;*/
+	background-color:rgba(0,0,0,0.5);
+}
+#works{
+	/*padding-top:5vh;*/
+	background-color: rgba(0,0,0,0.5);
+	padding-bottom:2vh;
+}
+#page3 td{
+	padding:1vh;
+	color:lightgrey;
+}
+#page3 a{
+	text-decoration: none;
+}
+#page3 a:hover{
+	text-decoration: underline;
+}
+#qualifications td{
+	color:lightblue;
+	border-bottom:1px dashed white;
+}
+#explastrow td{
+	border-bottom:0px solid rgba(0,0,0,0);
+}
+#qualifications strong{
+	color:dodgerblue;
+	font-weight:normal;
+}
+#works td{
+	border-bottom:1px dashed white;
+	color:coral;
+}
+#works a{
+	color:indianred;
+}
+#works i{
+	font-weight:bold;
+}
+#works strong{
+	font-weight: normal;
+	color:lightcoral;
+}
 #buttonpressdiv{
 	position:fixed;
 	top:10vh;
@@ -237,7 +403,7 @@ body{
 
 #about{
 	margin-top:1vh;
-	margin-left:2vh;
+	margin-left:10vh;
 	background-color:rgba(10,10,10,0.96);
 	border-radius:5vh;
 	border:1vh double white;
@@ -294,55 +460,105 @@ body{
 	font-size:2vh;
 	margin-left:00vh;
 	left:0vh;
-	/*width:50vh;*/
-	transform:rotate(-1deg);
-	width:100vh;
+	/*width:100%;*/
+	width:115vh;
+	/*transform:rotate(-1deg);*/
+	/*width:100vh;*/
+	border-left:1vh dotted white;
+	padding-left:3vh;
+	padding-top:5vh;
+	padding-right:3vh;
+	font-weight:lighter;
 }
 
 #techSkillsTitle{
 	font-family:pixel;
+	font-weight:lighter;
 }
 
 .web{
-	font-family: ASwirlVelvet;
+	font-family: dkjambo;
 	font-size:25px;
+	font-weight:lighter;
+	font-size:2.5vh;
 }
 .sql{
 	font-family:bubbleboddy;
+	font-weight:lighter;
+	font-size:3vh;
 }
 .hard{
 	font-family:MomTW;
+	font-weight:lighter;
 }
 .oper{
 	font-family:komtit;
+	font-weight:lighter;
 }
 .model{
 	font-family:Chocolate;
+	font-weight:lighter;
+}
+
+.webgauge{
+	background-color: lightblue;
+}
+
+.sqlgauge{
+	background-color: lightgreen;
+}
+
+.hardgauge{
+	background-color: lightcoral;
+}
+
+.modelgauge{
+	background-color: khaki;
+}
+
+.opergauge{
+	background-color: lightgrey;
 }
 
 .techSkillSubtitle{
 	/*text-decoration: underline;*/
-	width:25vh;
+	width:40vh;
 	border-top:3px dotted white;
-	font-weight:bolder;
+	/*font-weight:bolder;*/
 	font-size:20px;
+	text-decoration: underline;
 }
 
 .skillname{
 	/*font-size:2vh;*/
+	width:40vh;
+
 }
 
 .skilllvl{
 	/*width:50vh;*/
-	height:3vh;
+	height:3vh;*
+	/*width:70vh;*/
 }
 
 .skilldef{
+	border-right:1vh double white;
+	width:50vh;
+}
 
+.finalRow{
+	background-color:gray;
+	visibility: hidden;
+}
+
+.finalGauge{
+	background-color:white;
+	width:50vh;
 }
 
 td{
-	border:1px solid black;
+	/*border:1px solid black;*/
+	color:white;
 }
 
 th{
@@ -460,14 +676,14 @@ th{
 	                shots[key] = new Shot(posX,0,"bottom",1,color[0],color[1],color[2],speed);
 	            }
 	        });
-	        if (Math.floor((Math.random() * 50) + 1) == 1 && shots.length<100){
+	        if (Math.floor((Math.random() * 50) + 1) == 1 && shots.length<80){
 	            posX = Math.floor((Math.random() * canvas.width) + 1);
 	            color = colors[Math.floor((Math.random() * colors.length))];
 	            speed = (Math.random() * 2) + 1;
 	            shots[shots.length] = new Shot(posX,0,"bottom",1,color[0],color[1],color[2],speed);
 	        }
 	        
-	    },20);
+	    },40);
 	}
 
 	var f_time = true;
@@ -628,9 +844,10 @@ th{
 
     function uncover(){
     	setTimeout(function(){fill_about1();},1500);
+    	$("#summary").slideDown("slow");
     }
     about1_text = "     Hello, everybody !";
-    about2_text = "  I am a 3rd year IT student, actually learning in Licence pro DIM at Annecy (France). It teaches JS tricks and mobile stuff, in order to form competents and agile web developpers.                            I like to test and experiment new things, but what I enjoy the most is to put into practice my knowledge.                              Have a check on my apps list in the bottom of this page !";
+    about2_text = "  I am a 3rd year IT student, actually learning in Licence pro DIM at Annecy (France). It teaches JS tricks and mobile stuff, in order to form competents and agile web developpers.                            I like to test and experiment new things, but what I enjoy the most is to put into practice my knowledge.                              Have a check on my apps list at the bottom of this page !";
     var cpta = -1;
     var cptc = 1;
     var cptw = 1;
@@ -691,6 +908,28 @@ th{
 			}
     	},5);
     }
+
+    // -----------------------------------
+    //          Pagination
+    // -----------------------------------
+    var startPage = "page1";
+    var pages = [];
+    $.each($(".page"),function(){
+    	pages.push($(this).attr("id"));
+    });
+    console.log(pages);
+    function reach(region){
+    	$.each(pages,function(key,value){
+    		if (region!=value){
+    			$("#"+value).slideUp();
+    		}
+    	});
+    	$("#"+region).slideDown();
+    }
+
+
+
+
 
     // -----------------------------------
     //			Effects
@@ -780,12 +1019,22 @@ th{
 		gauge = $("<div/>");
 		gauge.addClass("gauge"+cptGauge)
 			.css({
-			"background-color":"white",
+			"color":"rgba(0,0,0,0)",
 			"height":"100%",
 			"width":(lvl*5)+"vh",
 			"border-radius":"0px 5px 5px 0px"
 		})
 			.text(true);
+		if ($(this).hasClass("weblvl"))
+			gauge.addClass("webgauge");
+		if ($(this).hasClass("sqllvl"))
+			gauge.addClass("sqlgauge");
+		if ($(this).hasClass("hardlvl"))
+			gauge.addClass("hardgauge");
+		if ($(this).hasClass("modellvl"))
+			gauge.addClass("modelgauge");
+		if ($(this).hasClass("operlvl"))
+			gauge.addClass("opergauge");
 		
 		$(this).text("").append(gauge);
 		gaugeWide[cptGauge] = false;
@@ -795,7 +1044,7 @@ th{
 	
 	var gaugeMore = 0.1;
 
-	var gaugeDelay0 = Math.floor((Math.random() * 1000) + 200);
+	var gaugeDelay0 = Math.floor((Math.random() * 500) + 700);
 	setInterval(function(){
 		var gaugeSize0 = 8;
 		if ($(".gauge0").text()=="true"){
@@ -808,7 +1057,7 @@ th{
 			$(".gauge0").animate({width:gaugeSize0*5+"vh"},gaugeDelay0);
 	},gaugeDelay0);
 
-	var gaugeDelay1 = Math.floor((Math.random() * 1000) + 200);
+	var gaugeDelay1 = Math.floor((Math.random() * 500) + 700);
 	setInterval(function(){
 		var gaugeSize1 = 6;
 		if ($(".gauge1").text()=="true"){
@@ -821,7 +1070,7 @@ th{
 			$(".gauge1").animate({width:gaugeSize1*5+"vh"},gaugeDelay1);
 	},gaugeDelay1);
 
-	var gaugeDelay2 = Math.floor((Math.random() * 1000) + 200);
+	var gaugeDelay2 = Math.floor((Math.random() * 500) + 700);
 	setInterval(function(){
 		var gaugeSize2 = 7;
 		if ($(".gauge2").text()=="true"){
@@ -834,7 +1083,7 @@ th{
 			$(".gauge2").animate({width:gaugeSize2*5+"vh"},gaugeDelay2);
 	},gaugeDelay2);
 
-	var gaugeDelay3 = Math.floor((Math.random() * 1000) + 200);
+	var gaugeDelay3 = Math.floor((Math.random() * 500) + 700);
 	setInterval(function(){
 		var gaugeSize3 = 6;
 		if ($(".gauge3").text()=="true"){
@@ -847,7 +1096,7 @@ th{
 			$(".gauge3").animate({width:gaugeSize3*5+"vh"},gaugeDelay3);
 	},gaugeDelay3);
 
-	var gaugeDelay4 = Math.floor((Math.random() * 1000) + 200);
+	var gaugeDelay4 = Math.floor((Math.random() * 500) + 700);
 	setInterval(function(){
 		var gaugeSize4 = 5;
 		if ($(".gauge4").text()=="true"){
@@ -860,7 +1109,7 @@ th{
 			$(".gauge4").animate({width:gaugeSize4*5+"vh"},gaugeDelay4);
 	},gaugeDelay4);
 
-	var gaugeDelay5 = Math.floor((Math.random() * 1000) + 200);
+	var gaugeDelay5 = Math.floor((Math.random() * 500) + 700);
 	setInterval(function(){
 		var gaugeSize5 = 4;
 		if ($(".gauge5").text()=="true"){
@@ -873,7 +1122,7 @@ th{
 			$(".gauge5").animate({width:gaugeSize5*5+"vh"},gaugeDelay5);
 	},gaugeDelay5);
 
-	var gaugeDelay6 = Math.floor((Math.random() * 1000) + 200);
+	var gaugeDelay6 = Math.floor((Math.random() * 500) + 700);
 	setInterval(function(){
 		var gaugeSize6 = 3;
 		if ($(".gauge6").text()=="true"){
@@ -886,7 +1135,7 @@ th{
 			$(".gauge6").animate({width:gaugeSize6*5+"vh"},gaugeDelay6);
 	},gaugeDelay6);
 
-	var gaugeDelay7 = Math.floor((Math.random() * 1000) + 200);
+	var gaugeDelay7 = Math.floor((Math.random() * 500) + 700);
 	setInterval(function(){
 		var gaugeSize7 = 5;
 		if ($(".gauge7").text()=="true"){
@@ -899,7 +1148,7 @@ th{
 			$(".gauge7").animate({width:gaugeSize7*5+"vh"},gaugeDelay7);
 	},gaugeDelay7);
 
-	var gaugeDelay8 = Math.floor((Math.random() * 1000) + 200);
+	var gaugeDelay8 = Math.floor((Math.random() * 500) + 700);
 	setInterval(function(){
 		var gaugeSize8 = 4;
 		if ($(".gauge8").text()=="true"){
@@ -912,7 +1161,7 @@ th{
 			$(".gauge8").animate({width:gaugeSize8*5+"vh"},gaugeDelay8);
 	},gaugeDelay8);
 
-	var gaugeDelay9 = Math.floor((Math.random() * 1000) + 200);
+	var gaugeDelay9 = Math.floor((Math.random() * 500) + 700);
 	setInterval(function(){
 		var gaugeSize9 = 3;
 		if ($(".gauge9").text()=="true"){
@@ -925,7 +1174,7 @@ th{
 			$(".gauge9").animate({width:gaugeSize9*5+"vh"},gaugeDelay9);
 	},gaugeDelay9);
 
-	var gaugeDelay10 = Math.floor((Math.random() * 1000) + 200);
+	var gaugeDelay10 = Math.floor((Math.random() * 500) + 700);
 	setInterval(function(){
 		var gaugeSize10 = 6;
 		if ($(".gauge10").text()=="true"){
@@ -938,7 +1187,7 @@ th{
 			$(".gauge10").animate({width:gaugeSize10*5+"vh"},gaugeDelay10);
 	},gaugeDelay10);
 
-	var gaugeDelay11 = Math.floor((Math.random() * 1000) + 200);
+	var gaugeDelay11 = Math.floor((Math.random() * 500) + 700);
 	setInterval(function(){
 		var gaugeSize11 = 5;
 		if ($(".gauge11").text()=="true"){
@@ -951,7 +1200,7 @@ th{
 			$(".gauge11").animate({width:gaugeSize11*5+"vh"},gaugeDelay11);
 	},gaugeDelay11);
 
-	var gaugeDelay12 = Math.floor((Math.random() * 1000) + 200);
+	var gaugeDelay12 = Math.floor((Math.random() * 500) + 700);
 	setInterval(function(){
 		var gaugeSize12 = 5;
 		if ($(".gauge12").text()=="true"){
@@ -964,7 +1213,7 @@ th{
 			$(".gauge12").animate({width:gaugeSize12*5+"vh"},gaugeDelay12);
 	},gaugeDelay12);
 
-	var gaugeDelay13 = Math.floor((Math.random() * 1000) + 200);
+	var gaugeDelay13 = Math.floor((Math.random() * 500) + 700);
 	setInterval(function(){
 		var gaugeSize13 = 9;
 		if ($(".gauge13").text()=="true"){
@@ -977,7 +1226,7 @@ th{
 			$(".gauge13").animate({width:gaugeSize13*5+"vh"},gaugeDelay13);
 	},gaugeDelay13);
 	
-	var gaugeDelay14 = Math.floor((Math.random() * 1000) + 200);
+	var gaugeDelay14 = Math.floor((Math.random() * 500) + 700);
 	setInterval(function(){
 		var gaugeSize14 = 3;
 		if ($(".gauge14").text()=="true"){
@@ -989,6 +1238,20 @@ th{
 		}
 			$(".gauge14").animate({width:gaugeSize14*5+"vh"},gaugeDelay14);
 	},gaugeDelay14);
+
+	var gaugeDelayFinal = 800;
+	setInterval(function(){
+		var gaugeSizeFinal = 10;
+		if ($(".finalGauge").text()=="true"){
+			$(".finalGauge").text("false");
+			gaugeSizeFinal+=gaugeMore;
+		}else{
+			$(".finalGauge").text("true");
+			gaugeSizeFinal-=gaugeMore;
+		}
+			$(".finalGauge").animate({width:gaugeSizeFinal*5+"vh"},gaugeDelayFinal);
+	},gaugeDelayFinal);
+
 	
 
 </script>
