@@ -4,7 +4,8 @@
   src="https://code.jquery.com/jquery-3.2.1.js"
   integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
   crossorigin="anonymous"></script>
-
+<title>Portfolio</title>
+<link rel="icon" href="favicon.ico" />
 </head>
 
 <body>
@@ -18,7 +19,11 @@
 			<button class='summaryButton' onclick="reach('page2');">My skills</button>
 			<button class='summaryButton' onclick="reach('page3');">Experiences</button>
 			<button class='summaryButton' onclick="reach('page4');">Projects</button>
-			<a href='Stephen_DUPRE_CV_3.0_eng.pdf'><button class='CVButton'>CV</button></a>
+			<a href='Stephen_DUPRE_CV_3.0_eng.pdf' target="_blank"><button class='CVButton'>CV</button></a>
+			<div>
+				<button class='summaryButton' id="themeButton" onclick="changeTheme();"></button>
+				<div style="border:1px solid white;" id="dropCpt"></div>
+			</div>
 
 
 
@@ -75,20 +80,22 @@
 			</div>
 
 			<div id="page3" class="page">
-				<div class="expTitle">Qualifications</div>
-				<table id="qualifications">
-					<tr><td>Soon</td><td><strong>LP DIM (Professional Bachelor’s Degree in multi-plateform software development) - Sandwich course</strong><br/>CCI Annecy / University of Savoy / IUT Annecy—Annecy-le-Vieux, France</td></tr>
-					<tr><td>June, 2017</td><td><strong>DUT Informatique (2-year university diploma in computer science)</strong><br/>University of Savoy / IUT Annecy—Annecy-le-Vieux, France</td></tr>
-					<tr id="explastrow"><td>June, 2015</td><td><strong>French Baccalaureate (High School diploma) with honors</strong><br/>Hector Berlioz High School—La Côte St André, France</td></tr>
-				</table>
-				<div class="expTitle">Works</div>
-				<table id="works">
-					<tr><td>September 2017 to June 2018<br/>(1 school year, 10 months)</td><td><strong><i>Sandwich course :</i> PHP development on an ERP trade software package.</strong><br/><a href="www.isisolutions.fr">IsiSolutions</a>—Cran-Gevrier, France</td></tr>
-					<tr><td>April to June 2017<br/>(3 months)</td><td><strong><i>IT internship :</i> Design and development of VBA tools for the operational mar-keting department.</strong><br/><a href="www.somfy.com">SOMFY SAS</a>,<a href="http://www.patriarche.fr/projet/somfy-centre-rd"> R&amp;D Center</a>—Cluses, France</td></tr>
-					<tr><td>July to August 2014, 2015, 2016<br/>(2 months each year during 3 years)</td><td><strong><i>Heating engineering labour :</i> Building, destruction, maintenance of factory fur-naces and other manual tasks.</strong><br/><a href="http://www.e-pro.fr/isere/fabrication-de-fours-et-bruleurs/tdma_f813494">TDMA</a>—Apprieu, France<br/><a href="http://www.ferbecketfumitherm.com/">Fumitherm</a>—Les Eparres, France</td></tr>
-					<tr><td>June 2013<br/>(1 month)</td><td><strong><i>Computer repairer aid :</i> Computer installation (hardware), software update, peripheral sales and advice.</strong><br/><a title="TDMA does not have a website anymore" href="http://www.e-pro.fr/isere/fabrication-de-fours-et-bruleurs/tdma_f813494">TDMA Informatique</a>—Apprieu, France</td></tr>
-					<tr><td>March 2012<br/>(2 weeks)</td><td><strong><i>Dog breeder aid :</i> Care, breeding, contests. Website update.</strong><br/><a title="Patrick LARGUET is not dog breeder anymore"><a href="https://www.societe.com/societe/sci-daisy-533518999.html">Patrick LARGUET</a>, dog breeder</a>—Champier, France</td></tr>
-				</table>
+				<div id="page3content">
+					<div class="expTitle">Qualifications</div>
+					<table id="qualifications">
+						<tr><td>Soon</td><td><strong>LP DIM (Professional Bachelor’s Degree in multi-plateform software development) - Sandwich course</strong><br/>CCI Annecy / University of Savoy / IUT Annecy—Annecy-le-Vieux, France</td></tr>
+						<tr><td>June, 2017</td><td><strong>DUT Informatique (2-year university diploma in computer science)</strong><br/>University of Savoy / IUT Annecy—Annecy-le-Vieux, France</td></tr>
+						<tr id="explastrow"><td>June, 2015</td><td><strong>French Baccalaureate (High School diploma) with honors</strong><br/>Hector Berlioz High School—La Côte St André, France</td></tr>
+					</table>
+					<div class="expTitle">Works</div>
+					<table id="works">
+						<tr><td>September 2017 to June 2018<br/>(1 school year, 10 months)</td><td><strong><i>Sandwich course :</i> PHP development on an ERP trade software package.</strong><br/><a target="_blank" href="http://www.isisolutions.fr">IsiSolutions</a>—Cran-Gevrier, France</td></tr>
+						<tr><td>April to June 2017<br/>(3 months)</td><td><strong><i>IT internship :</i> Design and development of VBA tools for the operational mar-keting department.</strong><br/><a target="_blank" href="http://www.somfy.com">SOMFY SAS</a>,<a target="_blank" href="http://www.patriarche.fr/projet/somfy-centre-rd"> R&amp;D Center</a>—Cluses, France</td></tr>
+						<tr><td>July to August 2014, 2015, 2016<br/>(2 months each year during 3 years)</td><td><strong><i>Heating engineering labour :</i> Building, destruction, maintenance of factory fur-naces and other manual tasks.</strong><br/><a target="_blank" href="http://www.e-pro.fr/isere/fabrication-de-fours-et-bruleurs/tdma_f813494">TDMA</a>—Apprieu, France<br/><a target="_blank" href="http://www.ferbecketfumitherm.com/">Fumitherm</a>—Les Eparres, France</td></tr>
+						<tr><td>June 2013<br/>(1 month)</td><td><strong><i>Computer repairer aid :</i> Computer installation (hardware), software update, peripheral sales and advice.</strong><br/><a target="_blank" title="TDMA does not have a website anymore" href="http://www.e-pro.fr/isere/fabrication-de-fours-et-bruleurs/tdma_f813494">TDMA Informatique</a>—Apprieu, France</td></tr>
+						<tr><td>March 2012<br/>(2 weeks)</td><td><strong><i>Dog breeder aid :</i> Care, breeding, contests. Website update.</strong><br/><a title="Patrick LARGUET is not dog breeder anymore"><a target="_blank" href="https://www.societe.com/societe/sci-daisy-533518999.html">Patrick LARGUET</a>, dog breeder</a>—Champier, France</td></tr>
+					</table>
+				</div>
 			</div>
 
 			<div id="page4" class="page">
@@ -181,6 +188,12 @@ body{
 	outline:0;
 	overflow:none;
 }
+a{
+	cursor:pointer;
+}
+button{
+	cursor:pointer;
+}
 #bg{
 	background-color: black;
 	position:fixed;
@@ -212,6 +225,7 @@ body{
 	display:flex;
 	flex-direction:column;
 	align-items:center;
+	color:white;
 }
 .summaryButton {
   -webkit-border-radius: 60;
@@ -366,6 +380,7 @@ body{
 	height:100%;
 	z-index:10;
 	transform:rotate(-3deg);
+	cursor:pointer;
 }
 
 #card_hover{
@@ -383,6 +398,7 @@ body{
 	transition: 0.5s ease-in-out all;
 	box-shadow: 5px 10px 10px grey;
 	transform:rotate(-3deg);
+	cursor:pointer;
 }
 #card_front{
 	position:absolute;
@@ -544,6 +560,9 @@ body{
 .skilldef{
 	border-right:1vh double white;
 	width:50vh;
+        display:flex;
+        flex-direction:row;
+        align-items:right;
 }
 
 .finalRow{
@@ -564,15 +583,72 @@ td{
 th{
 	font-size:3.5vh;
 }
+
+/* --------- Scrollbars ------------- */
+
+::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #5768dd;
+  border: 0px none #ffffff;
+  border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8592e7;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #7460d5;
+}
+::-webkit-scrollbar-track {
+  background: #666666;
+  border: 4px solid #888888;
+  border-radius: 100px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-track:active {
+  background: #666666;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
 </style>
 
-<!--
-<tr><td class="techSkillSubtitle" coslpan="3">Hardcode languages</td></tr>
-				<tr><td class="skillname">C / C++</td><td class="skilllvl">3</td><td class="skilldef">Basic 
-				programming</td></tr>
--->
+
+
+</style>
 
 <script>
+
+	//--------------------------------------------------------
+	//					Themes
+	//--------------------------------------------------------
+	var themes = [
+		["Monochrome",[[255,255,255]]],
+		["Party",[[255,0,0],[0,0,255],[0,255,0],[255,255,0],[255,0,255],[0,255,255]]],
+		["Mana",[[0,0,255],[212,241,255],[175,204,225],[90,147,199],[35,100,148],[17,72,122]]],
+		["Lava",[[255,0,0],[255,255,0],[85,51,51],[204,68,34],[255,102,0],[255,255,68],[234,218,181]]],
+		["Golden",[[255,255,0],[109,88,0],[167,135,0],[210,170,0],[236,191,0],[255,213,34],[216,183,75],[170,170,170]]],
+		["Acid",[[0,255,0],[0,150,150],[0,255,150],[0,150,255],[111,255,0],[199,206,97],[43,226,58],[43,170,58]]],
+		["Bloody",[[255,0,0],[30,0,0],[56,0,0],[77,0,0],[74,0,0],[111,0,0]]],
+		["Chocolate",[[174,110,82],[167,103,76],[163,98,69],[161,90,60],[156,84,53],[210,105,30]]],
+		["Nebula",[[0,145,255],[0,17,255],[0,2,34],[75,0,130],[138,43,226]]],
+		["Portal",[[1,115,182],[255,120,47]]],
+		["ClownFish",[[255,120,47],[255,255,255]]],
+		["Nope",[[0,0,0]]]
+	];
+	var theme = 0;
+	if (localStorage["theme"])
+		theme = localStorage["theme"];
+	$("#themeButton").text("Theme : "+themes[theme][0]);
+	var colors = themes[theme][1];
 
 	class Shot{
     constructor(posX, posY=0, dir="bottom", type=1, r=255, g=255, b=255, speed=1, dmg=1){
@@ -644,17 +720,12 @@ th{
 	    }
 	    
 	    var shots = [];
-	    //var colors = [[255,0,0],[255,255,0],[255,0,255],[0,255,255],[0,255,0],[0,0,255]];
-	    var colors = [[255,255,255]];
-	    //posX, posY=0, dir="bottom", type=1, r=255, g=255, b=255, speed=1, dmg=1
-	    
-	    
-	    //drawArrow(context,0,0,0.5,'rgb(255,0,0)','rgb(0,0,255)');
-	    
-	    
+
 	    // Background variables
 	    var interval = 0;
 	    var intervalPourRendreLesGensFous = 0;
+	    var maxDropNb = 80;
+	    var dropLuck = 10;
 	    
 	    //---------------------------------------------------------------------
 	    //                  Press space to play screen
@@ -676,13 +747,13 @@ th{
 	                shots[key] = new Shot(posX,0,"bottom",1,color[0],color[1],color[2],speed);
 	            }
 	        });
-	        if (Math.floor((Math.random() * 50) + 1) == 1 && shots.length<80){
+	        if (Math.floor((Math.random() * dropLuck) + 1) == 1 && shots.length<maxDropNb){
 	            posX = Math.floor((Math.random() * canvas.width) + 1);
 	            color = colors[Math.floor((Math.random() * colors.length))];
 	            speed = (Math.random() * 2) + 1;
 	            shots[shots.length] = new Shot(posX,0,"bottom",1,color[0],color[1],color[2],speed);
 	        }
-	        
+	        $("#dropCpt").text("Drops:"+shots.length+"/"+maxDropNb);
 	    },40);
 	}
 
@@ -1252,6 +1323,30 @@ th{
 			$(".finalGauge").animate({width:gaugeSizeFinal*5+"vh"},gaugeDelayFinal);
 	},gaugeDelayFinal);
 
-	
+	p3MarginTop = "3vh";
+        var p3WaveAnim = setInterval(function(){
+    	    if (p3MarginTop == "3vh")
+    		p3MarginTop = "4vh";
+    	    else
+    		p3MarginTop = "3vh";
+    	    $("#page3content").animate({
+    		marginTop:p3MarginTop
+    	    },1000);
+        },999);
+
+//------------------------------------------------
+//				Theme change
+//------------------------------------------------
+
+function changeTheme(){
+	theme++;
+	if (theme>=themes.length)
+		theme = 0;
+	$("#themeButton").text("Theme : "+themes[theme][0]);
+	localStorage["theme"] = theme;
+	colors = themes[theme][1];
+}
+
 
 </script>
+		
