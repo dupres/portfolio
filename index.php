@@ -12,7 +12,7 @@
 
 	<canvas id="bg"></canvas>
 
-	<div id="buttonpressdiv"><img id="buttonpress" src="buttonpress.png"/></div>	
+	<div id="buttonpressdiv" onmousedown="return false"><img id="buttonpress" src="buttonpress.png" onmousedown="return false"/></div>	
 	<div id="content">
 		<div id="summary">
 			<button class='summaryButton' onclick="reach('page1');">Me</button>
@@ -85,13 +85,13 @@
 					<table id="qualifications">
 						<tr><td>Soon</td><td><strong>LP DIM (Professional Bachelor’s Degree in multi-plateform software development) - Sandwich course</strong><br/>CCI Annecy / University of Savoy / IUT Annecy—Annecy-le-Vieux, France</td></tr>
 						<tr><td>June, 2017</td><td><strong>DUT Informatique (2-year university diploma in computer science)</strong><br/>University of Savoy / IUT Annecy—Annecy-le-Vieux, France</td></tr>
-						<tr id="explastrow"><td>June, 2015</td><td><strong>French Baccalaureate (High School diploma) with honors</strong><br/>Hector Berlioz High School—La Côte St André, France</td></tr>
+						<tr id="explastrow"><td>June, 2015</td><td><strong>French Baccalaureate (High School diploma) with honors</strong><br/>Hector Berlioz High School—La Cote St Andre, France</td></tr>
 					</table>
 					<div class="expTitle">Works</div>
 					<table id="works">
 						<tr><td>September 2017 to June 2018<br/>(1 school year, 10 months)</td><td><strong><i>Sandwich course :</i> PHP development on an ERP trade software package.</strong><br/><a target="_blank" href="http://www.isisolutions.fr">IsiSolutions</a>—Cran-Gevrier, France</td></tr>
 						<tr><td>April to June 2017<br/>(3 months)</td><td><strong><i>IT internship :</i> Design and development of VBA tools for the operational mar-keting department.</strong><br/><a target="_blank" href="http://www.somfy.com">SOMFY SAS</a>,<a target="_blank" href="http://www.patriarche.fr/projet/somfy-centre-rd"> R&amp;D Center</a>—Cluses, France</td></tr>
-						<tr><td>July to August 2014, 2015, 2016<br/>(2 months each year during 3 years)</td><td><strong><i>Heating engineering labour :</i> Building, destruction, maintenance of factory fur-naces and other manual tasks.</strong><br/><a target="_blank" href="http://www.e-pro.fr/isere/fabrication-de-fours-et-bruleurs/tdma_f813494">TDMA</a>—Apprieu, France<br/><a target="_blank" href="http://www.ferbecketfumitherm.com/">Fumitherm</a>—Les Eparres, France</td></tr>
+						<tr><td>July to August 2014, 2015, 2016<br/>(2 months each year during 3 years)</td><td><strong><i>Heating engineering labour :</i> Building, destruction, maintenance of factory furnaces and other manual tasks.</strong><br/><a target="_blank" href="http://www.e-pro.fr/isere/fabrication-de-fours-et-bruleurs/tdma_f813494">TDMA</a>—Apprieu, France<br/><a target="_blank" href="http://www.ferbecketfumitherm.com/">Fumitherm</a>—Les Eparres, France</td></tr>
 						<tr><td>June 2013<br/>(1 month)</td><td><strong><i>Computer repairer aid :</i> Computer installation (hardware), software update, peripheral sales and advice.</strong><br/><a target="_blank" title="TDMA does not have a website anymore" href="http://www.e-pro.fr/isere/fabrication-de-fours-et-bruleurs/tdma_f813494">TDMA Informatique</a>—Apprieu, France</td></tr>
 						<tr><td>March 2012<br/>(2 weeks)</td><td><strong><i>Dog breeder aid :</i> Care, breeding, contests. Website update.</strong><br/><a title="Patrick LARGUET is not dog breeder anymore"><a target="_blank" href="https://www.societe.com/societe/sci-daisy-533518999.html">Patrick LARGUET</a>, dog breeder</a>—Champier, France</td></tr>
 					</table>
@@ -99,7 +99,14 @@
 			</div>
 
 			<div id="page4" class="page">
-				
+				<div id="nephi">
+					<div class="p-desc">
+						<h1>Nephi</h1>
+						<p>Nephi is a well designed motorbike helmet with an augmented reality system that provides GPS guidance, route sharing and instant measure of the condition of the bike</p><p>It brings also more security with automatics help calls and cameras towards blind spots</p><p>You can drive for hours with its shape memory intern moss that adapts to the size of your head</p><p>To know more about this wonderful helmet, go and check its website <a href="http://incantar.fr/Nephi">here</a></p></div>
+					<div class="p-picture">
+						<img src="./video_360.gif" id="p-img"/>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -619,6 +626,39 @@ th{
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
+
+#page4{
+	display:none;
+}
+
+#nephi{
+	background-color: rgba(25,25,25,0.5);
+	margin-left:1vh;
+	margin-top:1vh;
+	border-radius:5vh;
+	width:100%;
+	height:100%;
+	display:flex;
+	flex-direction:column;
+	color:white;
+	align-items: center;
+}
+
+.p-desc{
+	margin-left:1vh;
+	font-family: typoRound;
+}
+
+.p-picture{
+	
+}
+
+#p-img{
+	max-height:40vh;
+	border:3px double black;
+
+}
+
 </style>
 
 
@@ -708,14 +748,14 @@ th{
 	    var canvas = document.getElementById('bg');
 	    if(!canvas)
 	    {
-	        alert("Impossible de récupérer le canvas");
+	        alert("Impossible de recuperer le canvas");
 	        return;
 	    }
 
 	    var context = canvas.getContext('2d');
 	    if(!context)
 	    {
-	        alert("Impossible de récupérer le context du canvas");
+	        alert("Impossible de recuperer le context du canvas");
 	        return;
 	    }
 	    
@@ -772,6 +812,17 @@ th{
 		setTimeout(function(){elementVisibilityLoading($("#about"),2);},700);
 		moveitCond = false;
 	});
+
+	// buttonpressisprinted = true;
+	// buttonpressblink = setInterval(function(){
+	// 	if (buttonpressisprinted){
+	// 		$("#buttonpress").attr("src","buttonpressoff.png");
+	// 		buttonpressisprinted = false;
+	// 	}else{
+	// 		$("#buttonpress").attr("src","buttonpress.png");
+	// 		buttonpressisprinted = true;
+	// 	}
+	// },900);
 
 	//SP AVATAR
 	//http://www.sp-studio.de/
@@ -883,6 +934,8 @@ th{
     		$("#card_hover").css("visibility","hidden");
     	}
     });
+
+
 
 
     // ------ Technical skills ------
