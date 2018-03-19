@@ -202,7 +202,7 @@
 		font-size:3vh;
 		overflow-x: none;
 		overflow-y: none;
-		cursor:url("candle.cur"),auto;
+		cursor:url("eye2.cur"),auto;
 	}
 	*{
 		outline:0;
