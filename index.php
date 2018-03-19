@@ -202,7 +202,7 @@
 		font-size:3vh;
 		overflow-x: none;
 		overflow-y: none;
-
+		cursor:url("candle.cur"),auto;
 	}
 	*{
 		outline:0;
@@ -731,7 +731,7 @@
 	$("#themeButton").text("Theme : "+themes[theme][0]);
 	var colors = themes[theme][1];
 
-	class Shot{
+	class Drop{
     constructor(posX, posY=0, dir="bottom", type=1, r=255, g=255, b=255, speed=1, dmg=1){
         this.type = type;
         this.posX = posX;
@@ -749,7 +749,7 @@
     move(canvas, context){
         if (this.dir == "bottom"){
             if (this.posY + this.speed < canvas.height){
-                this.posY=this.posY+this.speed;
+                this.posY=Math.round(this.posY+this.speed);
                 this.draw(canvas,context);
             }else{
                 this.end = true;
@@ -757,7 +757,7 @@
             }
         }else if (this.dir == "top"){
             if (this.posY - this.speed > 0){
-                this.posY=this.posY-this.speed;
+                this.posY=Math.round(this.posY-this.speed);
                 this.draw(canvas,context);
             }else{
                 this.end = true;
@@ -801,80 +801,126 @@
 	        return;
 	    }
 	    
-	    var shots = [];
+	    var drops = [];
 
 	    // Background variables
 	    var interval = 0;
 	    var intervalPourRendreLesGensFous = 0;
 	    var maxDropNb = 80;
 	    var dropLuck = 10;
-	    
+	   
+
+
 	    //---------------------------------------------------------------------
-	    //                  Press space to play screen
+	    //                  Background drops
 	    //---------------------------------------------------------------------
 
-	    var mousePosX;
-	    var mousePosY;
+	    var mousePosX = 0;
+	    var mousePosY = 0;
 
-    	function getMousePos(canvas, evt) {
+	    var toleranceX = 1;
+	    var toleranceY = 5;
+
+    	function getMousePos(event) {
 	        var rect = canvas.getBoundingClientRect();
-	        return {
-	          	x: evt.clientX - rect.left,
-	          	y: evt.clientY - rect.top
-	        };
+
+	        mousePosX = Math.round(event.clientX / window.innerWidth * canvas.width);
+	        mousePosY = Math.round(event.clientY / window.innerHeight * canvas.height);
    		}
 
-	    $("body").on('click',function(evt){
-    		// var mousePos = getMousePos($("body"), evt);
+   		$("body").mousemove(function(event){
+   			getMousePos(event);
+   		});
 
-    		console.log(event.pageX,event.pageY);
-    	},false);
-
-    	$("body").mousemove(function(event){
-    		mousePosX = event.pageX;
-    		mousePosY = event.pageY;
-    	});
-
+   		var fadeColor = "rgba(0,0,0,0.3)";
 	    interval = setInterval(function(){
-	    	
 
 	        context.beginPath();
-	        context.fillStyle="rgba(0,0,0,0.3)";
+	        context.fillStyle=fadeColor;
+	        fadeColor = "rgba(0,0,0,0.3)";
 	        context.rect(0,0,canvas.width,canvas.height);
 	        context.fill();
 	        context.closePath();
+
+	        context.beginPath();
+	        context.fillStyle = "rgb(255,255,255)";
+	        context.rect(mousePosX,mousePosY,1,1);
+	        context.fill();
+	        context.closePath();
 	        
-	        $.each(shots, function(key,shot){
-	            shot.move(canvas,context);
-	            if (shot.end === true){
+	        $.each(drops, function(key,drop){
+	            drop.move(canvas,context);
+	            //if drop reach bottom of canvas, create a new one at the top
+	            if (drop.end === true){
 	                posX = Math.floor((Math.random() * canvas.width) + 1);
 	                color = colors[Math.floor((Math.random() * colors.length))];
 	                speed = (Math.random() * 2) + 1;
-	                shots[key] = new Shot(posX,0,"bottom",1,color[0],color[1],color[2],speed);
+	                // if (key == 1){
+	                // 	color = [255,255,255];
+	                // 	speed = 1;
+	                // }
+	                drops[key] = new Drop(posX,0,"bottom",1,color[0],color[1],color[2],speed);
 	            }
+	            // if (key == 1){
+		            if (sd_enabled){
+			            if (drop.posX - toleranceX <= mousePosX && mousePosX <= drop.posX + toleranceX && drop.posY - speed * toleranceY <= mousePosY && mousePosY <= drop.posY){
+
+			            	sd_score = 0;
+
+			            	// fadeColor = "rgba(10,10,10,0.5)";
+			            	fadeColor = "rgb(255,255,255)";
+			            }
+			        }
+		    	// }
+
+
 	        });
-	        if (Math.floor((Math.random() * dropLuck) + 1) == 1 && shots.length<maxDropNb){
+	        if (Math.floor((Math.random() * dropLuck) + 1) == 1 && drops.length<maxDropNb){
 	            posX = Math.floor((Math.random() * canvas.width) + 1);
 	            color = colors[Math.floor((Math.random() * colors.length))];
 	            speed = (Math.random() * 2) + 1;
-	            shots[shots.length] = new Shot(posX,0,"bottom",1,color[0],color[1],color[2],speed);
+	            drops[drops.length] = new Drop(posX,0,"bottom",1,color[0],color[1],color[2],speed);
 	        }
-	        $("#dropCpt").text("Drops:"+shots.length+"/"+maxDropNb);
-
-
-	        // context.moveTo(this.posX, this.posY);
-         	// context.lineTo(this.posX, this.posY + 5 * this.speed);
+	        $("#dropCpt").text("Drops:"+drops.length+"/"+maxDropNb);
 
 	    },40);
 	}
 
-	
 
+		// -----------------------------------
+	    //			spaceDodge
+	    // ----------------------------------    
 
+	    var sd_score = 0;
+	    var sd_score_max = localStorage["spaceDodge"];
+	    var sd_enabled = false;
+	    var sd;
+
+	    function spaceDodge(enabled){
+	    	if (enabled){
+		    	sd_score = 0;
+		    	sd_enabled = true;
+		    	if (sd_score_max)
+		    		$("#max").text(sd_score_max);
+		    	sd = setInterval(function(){
+		    		$("#score").text(sd_score);
+		    		if (!(sd_score_max) || sd_score>sd_score_max){
+		    				sd_score_max = sd_score;
+		    				localStorage["spaceDodge"] = sd_score_max;
+		    				$("#max").text(sd_score_max);
+		    		}
+		    	},50);
+		    }else{
+		    	clearInterval(sd);
+		    	sd_enabled = false;
+		    }
+	    }
+
+	// -----------------------------------
+    //			Press me !
+    // -----------------------------------
 
 	var f_time = true;
-
-	//-------------   ButtonPress ---------------
 
 	$("#buttonpress").click(function(){
 		$("#buttonpress").remove();
@@ -887,17 +933,6 @@
 		setTimeout(function(){elementVisibilityLoading($("#about"),2);},700);
 		moveitCond = false;
 	});
-
-	// buttonpressisprinted = true;
-	// buttonpressblink = setInterval(function(){
-	// 	if (buttonpressisprinted){
-	// 		$("#buttonpress").attr("src","buttonpressoff.png");
-	// 		buttonpressisprinted = false;
-	// 	}else{
-	// 		$("#buttonpress").attr("src","buttonpress.png");
-	// 		buttonpressisprinted = true;
-	// 	}
-	// },900);
 
 	//SP AVATAR
 	//http://www.sp-studio.de/
@@ -981,7 +1016,11 @@
     	cpt=cpt+1;
     },40);
 
-    // -----   Card_hover -------
+
+
+	// -----------------------------------
+    //			Card
+    // ----------------------------------   
     
 	var card_hover_display = true;
 	var card_hover_state = "small";
@@ -1131,35 +1170,7 @@
     		spaceDodge(false);
     }
 
-	
-	// -----------------------------------
-    //			spaceDodge
-    // ----------------------------------    
 
-    var sd_score = 0;
-    var sd_score_max = localStorage["spaceDodge"];
-    var sd_enabled = false;
-    var sd;
-    function spaceDodge(enabled){
-    	if (enabled){
-	    	sd_score = 0;
-	    	sd_enabled = true;
-	    	if (sd_score_max)
-	    		$("#max").text(sd_score_max);
-	    	sd = setInterval(function(){
-	    		// sd_score++;
-	    		$("#score").text(sd_score);
-	    		if (!(sd_score_max) || sd_score>sd_score_max){
-	    				sd_score_max = sd_score;
-	    				localStorage["spaceDodge"] = sd_score_max;
-	    				$("#max").text(sd_score_max);
-	    		}
-	    	},50);
-	    }else{
-	    	clearInterval(sd);
-	    	sd_enabled = false;
-	    }
-    }
     
 
     // -----------------------------------
