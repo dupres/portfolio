@@ -918,7 +918,11 @@
 		            if (sd_enabled){
 			            if (drop.posX - toleranceX <= mousePosX && mousePosX <= drop.posX + toleranceX && drop.posY - speed * toleranceY <= mousePosY && mousePosY <= drop.posY){
 
+			            	sdRelocate("r");
+					    	sdRelocate("b");
+					    	sdRelocate("y");
 			            	sdReset();
+
 
 			            	// fadeColor = "rgba(10,10,10,0.5)";
 			            	fadeColor = "rgb(255,255,255)";
@@ -1029,7 +1033,7 @@
 	    	$("#sd_"+color+"h").css({"left":rdmposX+"px","top":rdmposY+"px","display":"inline"});
 	    }
 
-	    console.log("Adrien est un gros patapouf");
+	    console.log("Toi qui scrute les logs, saches que je te vois < O >");
 
 	    function sdDisappear(color){
 	    	$("#sd_"+color+"h").css({"display":"none"});
