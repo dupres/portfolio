@@ -20,6 +20,7 @@
 			<button class='summaryButton' onclick="reach('page3');">Experiences</button>
 			<button class='summaryButton' onclick="reach('page4');">Projects</button>
 			<button class='summaryButton' onclick="reach('page5');">Game</button>
+			<button class='summaryButton' onclick="reach('page6');">Screen saver
 			<a href='Stephen_DUPRE_CV_3.0_eng.pdf' target="_blank"><button class='CVButton'>CV</button></a>
 			<div>
 				<button class='summaryButton' id="themeButton" onclick="changeTheme();"></button>
@@ -118,9 +119,19 @@
 						<div id="max" class="score">
 							0
 						</div>
+						<div id="lifebar">
+							<div id="life"/>
+							<div id="extralife"/>
+						</div>
 					</div>
+					<img src="ic_heal.png" class="sd_obj" id="sd_rh" onmouseover="sdConsume('r');"/>
+					<img src="ic_shield.png" class="sd_obj" id="sd_bh" onmouseover="sdConsume('b');"/>
+					<img src="ic_extra.png" class="sd_obj" id="sd_yh" onmouseover="sdConsume('y');"/>
 				</div>
 			</div>
+
+			<div id="page6" class="page"/>
+
 		</div>
 	</div>
 
@@ -690,7 +701,7 @@
 		background-color: rgba(255,255,255,0.5);
 		border-color:3px double white;
 		border-radius:1vh;
-		width:20vh;
+		/*width:20vh;*/
 		height:4vh;
 
 	}
@@ -699,7 +710,41 @@
 		text-align:center;
 		width:50%;
 		height:100%;
+		z-index: 9011;
 	}
+
+	.sd_obj{
+		width:5vh;
+		height:5vh;
+		position:fixed;
+		z-index: 9010;
+		display:none;
+	}
+
+	#lifebar{
+		height:100%;
+		width:100%;
+	}
+
+	#life{
+		height:100%;
+		background-color:green;
+		color:black;
+		position:absolute;
+		left:0;
+		top:0;
+		z-index: 9009;
+	}
+	#extralife{
+		height:100%;
+		background-color:yellow;
+		color:black;
+		position:absolute;
+		left:0;
+		top:0;
+		z-index: 9009;
+	}
+
 </style>
 
 
@@ -781,6 +826,7 @@
     
 }
 
+	var strikeTime = 0;
 	window.onload = function()
 	{
 	    //---------------------------------------------------------
@@ -811,9 +857,9 @@
 	   
 
 
-	    //---------------------------------------------------------------------
+	    //-----------------------------------------------------
 	    //                  Background drops
-	    //---------------------------------------------------------------------
+	    //-----------------------------------------------------
 
 	    var mousePosX = 0;
 	    var mousePosY = 0;
@@ -833,11 +879,18 @@
    		});
 
    		var fadeColor = "rgba(0,0,0,0.3)";
+   		
 	    interval = setInterval(function(){
 
 	        context.beginPath();
 	        context.fillStyle=fadeColor;
 	        fadeColor = "rgba(0,0,0,0.3)";
+	        if (strikeTime>0){
+	        	fadeColor = "rgb(255,255,255)";
+	        	strikeTime--;
+
+	        }
+
 	        context.rect(0,0,canvas.width,canvas.height);
 	        context.fill();
 	        context.closePath();
@@ -865,10 +918,11 @@
 		            if (sd_enabled){
 			            if (drop.posX - toleranceX <= mousePosX && mousePosX <= drop.posX + toleranceX && drop.posY - speed * toleranceY <= mousePosY && mousePosY <= drop.posY){
 
-			            	sd_score = 0;
+			            	sdReset();
 
 			            	// fadeColor = "rgba(10,10,10,0.5)";
 			            	fadeColor = "rgb(255,255,255)";
+
 			            }
 			        }
 		    	// }
@@ -896,12 +950,22 @@
 	    var sd_enabled = false;
 	    var sd;
 
+	    const sd_maxlife = 100;
+	    var sd_life = sd_maxlife;
+	    var sd_shield = 0;
+	    var sd_extralife = 0;
+
 	    function spaceDodge(enabled){
 	    	if (enabled){
 		    	sd_score = 0;
+		    	sd_life = sd_maxlife;
 		    	sd_enabled = true;
 		    	if (sd_score_max)
 		    		$("#max").text(sd_score_max);
+
+		    	sdRelocate("r");
+		    	sdRelocate("b");
+		    	sdRelocate("y");
 		    	sd = setInterval(function(){
 		    		$("#score").text(sd_score);
 		    		if (!(sd_score_max) || sd_score>sd_score_max){
@@ -909,11 +973,68 @@
 		    				localStorage["spaceDodge"] = sd_score_max;
 		    				$("#max").text(sd_score_max);
 		    		}
+
+		    		if (sd_extralife>0){
+		    			sd_extralife-=1;
+		    		}
+		    		else{
+		    			sd_life-=1;
+		    		}
+		    		if (sd_life == 0){
+		            	sdReset();
+		            	strikeTime = 5;
+		    		}
+
+		    		//Aff bars
+		    		$("#life").css({"width":(sd_life)+"%"});
+		    		$("#extralife").css({"width":(sd_extralife)+"%"});
+		    		// $("#extralife").text(sd_life + " " + sd_extralife);
+
 		    	},50);
 		    }else{
 		    	clearInterval(sd);
 		    	sd_enabled = false;
 		    }
+	    }
+
+	    function sdReset(){
+	    	sd_life = sd_maxlife;
+        	sd_extralife = 0;
+        	sd_shield = 0;
+			sd_score = 0;
+	    }
+
+	    function sdConsume(color){
+	    	sdRelocate(color);
+	    	switch (color)	{
+	    		case "r":
+	    			sd_life = sd_maxlife;
+	    			break;
+	    		case "b":
+	    			sd_shield = sd_shield + 1 - sd_shield;
+	    			// $("body").css({"cursor","eyeshield.cur"});
+	    			break;
+	    		case "y":
+	    			sd_extralife = sd_maxlife;
+	    			break;
+	    		default:
+	    			break;
+	    	}
+
+	    }
+
+	    function sdRelocate(color){
+	    	rdmposX = Math.floor((Math.random() * ($(window).width())-50) + 1);
+	    	rdmposY = Math.floor((Math.random() * ($(window).height())-50) + 1);
+	    	$("#sd_"+color+"h").css({"left":rdmposX+"px","top":rdmposY+"px","display":"inline"});
+	    }
+
+	    console.log("Adrien est un gros patapouf");
+
+	    function sdDisappear(color){
+	    	$("#sd_"+color+"h").css({"display":"none"});
+	    	sdRelocate(color);
+	    	
 	    }
 
 	// -----------------------------------
@@ -1156,7 +1277,7 @@
     $.each($(".page"),function(){
     	pages.push($(this).attr("id"));
     });
-    console.log(pages);
+    
     function reach(region){
     	$.each(pages,function(key,value){
     		if (region!=value){
